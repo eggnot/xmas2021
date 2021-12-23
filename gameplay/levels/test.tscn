@@ -1,0 +1,177 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://gameplay/level_base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://factory1/Rack_w_boxes.scn" type="PackedScene" id=2]
+[ext_resource path="res://gameplay/props/box_pickup.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Curve3D" id=1]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -0.381168, -1.04799, -0.551163, -22.5359, 0, -14.6126, 22.5359, 0, 14.6126, 44.7112, 0.193743, 9.62005, 13.7546, 0.626252, -41.2283, -13.7546, -0.626252, 41.2283, 52.4484, -0.0150099, 92.4941, 0, 0, 0, 0, 0, 0, 110.318, -0.170105, 172.026 ),
+"tilts": PoolRealArray( 0, 0, 0, 0 )
+}
+
+[sub_resource type="CubeMesh" id=4]
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 0.5, 0.5, 0.5 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 2, 1, 1 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 1, 0.5, 0.5 )
+
+[node name="LevelBase" instance=ExtResource( 1 )]
+
+[node name="TrackPath" parent="." index="0"]
+curve = SubResource( 1 )
+
+[node name="Krampus" parent="TrackPath" index="1"]
+transform = Transform( -0.178394, -0.0522406, 0.982504, 9.31323e-10, 0.998589, 0.0530886, -0.983959, 0.00947136, -0.178131, -0.381168, -1.04799, -0.551163 )
+gravity = -15.0
+jump_velocity = 8.0
+
+[node name="Skeleton" parent="TrackPath/Krampus/Model/Armature" index="0"]
+bones/2/bound_children = [ NodePath("backpack") ]
+
+[node name="backpack" parent="TrackPath/Krampus/Model/Armature/Skeleton" index="2"]
+transform = Transform( 0.986368, 0.101318, 0.129661, -0.158874, 0.381174, 0.91075, 0.0428521, -0.918935, 0.392074, -1.15195, 1.13727, -73.1055 )
+
+[node name="SampleObstacle1" type="PathFollow" parent="TrackPath" index="2"]
+transform = Transform( 0.42755, -0.018053, 0.903809, 0.0204272, 0.999739, 0.0103059, -0.903761, 0.014056, 0.427806, 37.3593, 0.171289, 4.16042 )
+offset = 38.31
+h_offset = 1.196
+rotation_mode = 4
+
+[node name="MeshInstance" type="MeshInstance" parent="TrackPath/SampleObstacle1" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="Collider" type="Area" parent="TrackPath/SampleObstacle1" index="1" groups=["Obstacles"]]
+
+[node name="CollisionShape" type="CollisionShape" parent="TrackPath/SampleObstacle1/Collider" index="0"]
+transform = Transform( 1, -9.31323e-10, -3.72529e-09, 0, 1, -1.39698e-09, 3.72529e-09, 9.8953e-10, 1, 0, 0.5, 0 )
+shape = SubResource( 5 )
+
+[node name="SampleObstacle4" type="PathFollow" parent="TrackPath" index="3"]
+transform = Transform( 0.42755, -0.018053, 0.903809, 0.0204272, 0.999739, 0.0103059, -0.903761, 0.014056, 0.427806, 36.3366, 0.122428, 6.32221 )
+offset = 38.31
+h_offset = -1.196
+rotation_mode = 4
+
+[node name="MeshInstance" type="MeshInstance" parent="TrackPath/SampleObstacle4" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="Collider" type="Area" parent="TrackPath/SampleObstacle4" index="1" groups=["Obstacles"]]
+
+[node name="CollisionShape" type="CollisionShape" parent="TrackPath/SampleObstacle4/Collider" index="0"]
+transform = Transform( 1, -9.31323e-10, -3.72529e-09, 0, 1, -1.39698e-09, 3.72529e-09, 9.8953e-10, 1, 0, 0.5, 0 )
+shape = SubResource( 5 )
+
+[node name="SampleObstacle2" type="PathFollow" parent="TrackPath" index="4"]
+transform = Transform( 0.110967, -0.035905, 0.993172, 0.012891, 0.999316, 0.0346865, -0.993741, 0.00895392, 0.111353, 15.531, -0.356783, -1.35146 )
+offset = 15.88
+h_offset = 0.581
+rotation_mode = 4
+
+[node name="MeshInstance" type="MeshInstance" parent="TrackPath/SampleObstacle2" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Collider" type="Area" parent="TrackPath/SampleObstacle2" index="1" groups=["Obstacles"]]
+
+[node name="CollisionShape" type="CollisionShape" parent="TrackPath/SampleObstacle2/Collider" index="0"]
+transform = Transform( 1, -9.31323e-10, -3.72529e-09, 0, 1, -1.39698e-09, 3.72529e-09, 9.8953e-10, 1, 0, 0.5, 0 )
+shape = SubResource( 3 )
+
+[node name="SampleObstacle3" type="PathFollow" parent="TrackPath" index="5"]
+transform = Transform( 0.256899, -0.0276731, 0.966039, 0.0172774, 0.999562, 0.0240387, -0.966284, 0.0105151, 0.257264, 25.2932, -0.0741898, 1.64739 )
+offset = 26.13
+h_offset = -0.581
+rotation_mode = 4
+
+[node name="MeshInstance" type="MeshInstance" parent="TrackPath/SampleObstacle3" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Collider" type="Area" parent="TrackPath/SampleObstacle3" index="1" groups=["Obstacles"]]
+
+[node name="CollisionShape" type="CollisionShape" parent="TrackPath/SampleObstacle3/Collider" index="0"]
+transform = Transform( 1, -9.31323e-10, -3.72529e-09, 0, 1, -1.39698e-09, 3.72529e-09, 9.8953e-10, 1, 0, 0.5, 0 )
+shape = SubResource( 3 )
+
+[node name="SampleDecoration" type="PathFollow" parent="TrackPath" index="6"]
+transform = Transform( 0.00280597, -0.0420081, 0.999111, 0.00871935, 0.99908, 0.0419822, -0.999958, 0.00859382, 0.00316966, 8.17506, -0.645351, -1.18589 )
+offset = 8.6
+rotation_mode = 4
+
+[node name="RackWithItems" parent="TrackPath/SampleDecoration" index="0" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 4.71482e-09, -3.72529e-08, -2.24099e-08, 1, 7.25621, -0.0633194, 0.473955 )
+
+[node name="RackWithItems2" parent="TrackPath/SampleDecoration" index="1" instance=ExtResource( 2 )]
+transform = Transform( 1, -9.31323e-10, 0, 0, 1, 4.71482e-09, -5.21541e-08, -2.99769e-08, 1, -8.1446, 0.0710722, -0.531982 )
+
+[node name="SampleDecoration2" type="PathFollow" parent="TrackPath" index="7"]
+transform = Transform( 0.412186, -0.0189183, 0.9109, 0.0202401, 0.999728, 0.0116043, -0.910875, 0.0136537, 0.412455, 35.8289, 0.134431, 4.77137 )
+offset = 37.21
+rotation_mode = 4
+
+[node name="RackWithItems" parent="TrackPath/SampleDecoration2" index="0" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 4.71482e-09, -3.72529e-08, -2.24099e-08, 1, 7.25621, -0.0633194, 0.473955 )
+
+[node name="RackWithItems2" parent="TrackPath/SampleDecoration2" index="1" instance=ExtResource( 2 )]
+transform = Transform( 1, -9.31323e-10, 0, 0, 1, 4.71482e-09, -5.21541e-08, -2.99769e-08, 1, -8.1446, 0.0710722, -0.531982 )
+
+[node name="SampleDecoration3" type="PathFollow" parent="TrackPath" index="8"]
+transform = Transform( 0.946642, -0.0237357, 0.321409, 0.0234662, 0.999714, 0.00471274, -0.32143, 0.00308099, 0.946923, 59.848, 0.279636, 28.6077 )
+offset = 71.76
+rotation_mode = 4
+
+[node name="RackWithItems" parent="TrackPath/SampleDecoration3" index="0" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 4.71482e-09, -3.72529e-08, -2.24099e-08, 1, 7.25621, -0.0633194, 0.473955 )
+
+[node name="RackWithItems2" parent="TrackPath/SampleDecoration3" index="1" instance=ExtResource( 2 )]
+transform = Transform( 1, -9.31323e-10, 0, 0, 1, 4.71482e-09, -5.21541e-08, -2.99769e-08, 1, -8.1446, 0.0710722, -0.531982 )
+
+[node name="SampleDecoration4" type="PathFollow" parent="TrackPath" index="9"]
+transform = Transform( 0.982275, -0.0246951, -0.185813, 0.0241325, 0.999695, -0.00528913, 0.185888, 0.000711251, 0.982565, 60.4173, 0.287732, 63.136 )
+offset = 106.7
+rotation_mode = 4
+
+[node name="RackWithItems" parent="TrackPath/SampleDecoration4" index="0" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 4.71482e-09, -3.72529e-08, -2.24099e-08, 1, 7.25621, -0.0633194, 0.473955 )
+
+[node name="RackWithItems2" parent="TrackPath/SampleDecoration4" index="1" instance=ExtResource( 2 )]
+transform = Transform( 1, -9.31323e-10, 0, 0, 1, 4.71482e-09, -5.21541e-08, -2.99769e-08, 1, -8.1446, 0.0710722, -0.531982 )
+
+[node name="SamplePickup" type="PathFollow" parent="TrackPath" index="10"]
+transform = Transform( 0.0707009, -0.0381774, 0.996764, 0.0114277, 0.999233, 0.0374612, -0.997432, 0.0087422, 0.0710828, 12.7936, -0.450803, -2.21985 )
+offset = 13.12
+h_offset = 1.2
+rotation_mode = 4
+
+[node name="BoxPickup" parent="TrackPath/SamplePickup" index="0" instance=ExtResource( 3 )]
+
+[node name="SamplePickup2" type="PathFollow" parent="TrackPath" index="11"]
+transform = Transform( 0.2104, -0.0302965, 0.977142, 0.0160393, 0.999492, 0.0275357, -0.977484, 0.00987917, 0.210778, 22.0287, -0.167628, 1.50251 )
+offset = 22.85
+h_offset = -1.2
+rotation_mode = 4
+
+[node name="BoxPickup" parent="TrackPath/SamplePickup2" index="0" instance=ExtResource( 3 )]
+
+[node name="SamplePickup3" type="PathFollow" parent="TrackPath" index="12"]
+transform = Transform( 0.385247, -0.0204368, 0.922583, 0.0198637, 0.999707, 0.0138506, -0.9226, 0.01299, 0.385538, 33.5785, 0.0855608, 5.10348 )
+offset = 35.28
+h_offset = -1.2
+rotation_mode = 4
+
+[node name="BoxPickup" parent="TrackPath/SamplePickup3" index="0" instance=ExtResource( 3 )]
+
+[editable path="TrackPath/Krampus/Model"]
