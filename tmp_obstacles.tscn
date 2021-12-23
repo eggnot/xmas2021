@@ -1,0 +1,352 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="BoxShape" id=12]
+extents = Vector3( 0.571313, 0.348658, 0.165372 )
+
+[sub_resource type="SpatialMaterial" id=14]
+albedo_color = Color( 0.752941, 0.752941, 0.752941, 1 )
+metallic = 1.0
+
+[sub_resource type="CubeMesh" id=13]
+material = SubResource( 14 )
+size = Vector3( 1.2, 0.8, 0.5 )
+
+[node name="obstacles" type="Spatial"]
+
+[node name="obstacle1" type="Area" parent="." groups=["obstacles"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.5, -18.44 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="obstacle1"]
+shape = SubResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="obstacle1"]
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="obstacle3" type="Area" parent="." groups=["obstacles"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.5, -100 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="obstacle3"]
+shape = SubResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="obstacle3"]
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="obstacle6" type="Area" parent="." groups=["obstacles"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 1.3, -100 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="obstacle6"]
+shape = SubResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="obstacle6"]
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="obstacle11" type="Area" parent="." groups=["obstacles"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.5, -40.7139 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="obstacle11"]
+shape = SubResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="obstacle11"]
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="obstacle12" type="Area" parent="." groups=["obstacles"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 1.3, -40.7139 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="obstacle12"]
+shape = SubResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="obstacle12"]
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="obstacle16" type="Area" parent="." groups=["obstacles"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.5, -85.7139 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="obstacle16"]
+shape = SubResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="obstacle16"]
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="obstacle17" type="Area" parent="." groups=["obstacles"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 1.3, -85.7139 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="obstacle17"]
+shape = SubResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="obstacle17"]
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="obstacle7" type="Area" parent="." groups=["obstacles"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -100 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="obstacle7"]
+shape = SubResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="obstacle7"]
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="obstacle8" type="Area" parent="." groups=["obstacles"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, -100 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="obstacle8"]
+shape = SubResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="obstacle8"]
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="obstacle9" type="Area" parent="." groups=["obstacles"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.5, -100 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="obstacle9"]
+shape = SubResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="obstacle9"]
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="obstacle21" type="Area" parent="." groups=["obstacles"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.5, -69 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="obstacle21"]
+shape = SubResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="obstacle21"]
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="obstacle22" type="Area" parent="." groups=["obstacles"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -69 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="obstacle22"]
+shape = SubResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="obstacle22"]
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="obstacle23" type="Area" parent="." groups=["obstacles"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.5, -69 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="obstacle23"]
+shape = SubResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="obstacle23"]
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="obstacle24" type="Area" parent="." groups=["obstacles"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.5, -26 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="obstacle24"]
+shape = SubResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="obstacle24"]
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="obstacle25" type="Area" parent="." groups=["obstacles"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -26 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="obstacle25"]
+shape = SubResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="obstacle25"]
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="obstacle26" type="Area" parent="." groups=["obstacles"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.5, -26 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="obstacle26"]
+shape = SubResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="obstacle26"]
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="obstacle20" type="Area" parent="." groups=["obstacles"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.5, -12 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="obstacle20"]
+shape = SubResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="obstacle20"]
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="obstacle10" type="Area" parent="." groups=["obstacles"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 1.3, -100 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="obstacle10"]
+shape = SubResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="obstacle10"]
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="obstacle18" type="Area" parent="." groups=["obstacles"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -12 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="obstacle18"]
+shape = SubResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="obstacle18"]
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="obstacle19" type="Area" parent="." groups=["obstacles"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 1.3, -12 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="obstacle19"]
+shape = SubResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="obstacle19"]
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="obstacle13" type="Area" parent="." groups=["obstacles"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -80 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="obstacle13"]
+shape = SubResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="obstacle13"]
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="obstacle14" type="Area" parent="." groups=["obstacles"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.5, -80 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="obstacle14"]
+shape = SubResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="obstacle14"]
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="obstacle15" type="Area" parent="." groups=["obstacles"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 1.3, -80 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="obstacle15"]
+shape = SubResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="obstacle15"]
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="obstacle2" type="Area" parent="." groups=["obstacles"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -35.44 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="obstacle2"]
+shape = SubResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="obstacle2"]
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="obstacle4" type="Area" parent="." groups=["obstacles"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.5, -35.44 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="obstacle4"]
+shape = SubResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="obstacle4"]
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="obstacle5" type="Area" parent="." groups=["obstacles"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.5, -59.44 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="obstacle5"]
+shape = SubResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="obstacle5"]
+mesh = SubResource( 13 )
+material/0 = null

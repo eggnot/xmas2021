@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/COIN-bounce-1.wav-ddce5a9b659aeef01d30acee28172599.sample"
+
+[deps]
+
+source_file="res://audio/COIN-bounce-1.wav"
+dest_files=[ "res://.import/COIN-bounce-1.wav-ddce5a9b659aeef01d30acee28172599.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

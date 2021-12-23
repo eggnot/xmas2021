@@ -1,0 +1,515 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://proto/CamFollow.gd" type="Script" id=1]
+[ext_resource path="res://proto/track1.png" type="Texture" id=2]
+[ext_resource path="res://proto/fence.gd" type="Script" id=3]
+[ext_resource path="res://Kramtroller.gd" type="Script" id=4]
+[ext_resource path="res://krampus/krampus_all.glb" type="PackedScene" id=6]
+[ext_resource path="res://pallete.tres" type="Material" id=7]
+
+[sub_resource type="Curve3D" id=1]
+bake_interval = 10.0
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -192 ),
+"tilts": PoolRealArray( 0, 0 )
+}
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_texture = ExtResource( 2 )
+uv1_scale = Vector3( 1, 18.4, 1 )
+
+[sub_resource type="CapsuleShape" id=2]
+radius = 0.3
+
+[sub_resource type="CapsuleMesh" id=3]
+radius = 0.3
+radial_segments = 12
+rings = 4
+
+[sub_resource type="Animation" id=8]
+resource_name = "jump"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation:y")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.5, 0.8 ),
+"transitions": PoolRealArray( 0.5, 0.5, 1 ),
+"update": 0,
+"values": [ 0.9, 3.0, 0.9 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("animation:parameters/jump/active")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=24]
+resource_name = "turn_left"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("model:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 180, 0 ), Vector3( 0, 225, 0 ), Vector3( 0, 180, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ -1.2, 0.2 ],
+"method": "strafe_x"
+} ]
+}
+
+[sub_resource type="Animation" id=25]
+resource_name = "turn_right"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("model:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 180, 0 ), Vector3( 0, 135, 0 ), Vector3( 0, 180, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 1.2, 0.2 ],
+"method": "strafe_x"
+} ]
+}
+
+[sub_resource type="SpatialMaterial" id=9]
+albedo_color = Color( 0.670588, 0.521569, 0.247059, 1 )
+
+[sub_resource type="CubeMesh" id=10]
+resource_name = "delivery_box"
+material = SubResource( 9 )
+size = Vector3( 0.368, 0.2, 0.305 )
+
+[sub_resource type="AnimationNodeOneShot" id=23]
+fadein_time = 0.2
+fadeout_time = 0.2
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "jump"
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "idle-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "walk-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "run-loop"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=22]
+blend_point_0/node = SubResource( 19 )
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource( 20 )
+blend_point_1/pos = 0.5
+blend_point_2/node = SubResource( 21 )
+blend_point_2/pos = 1.0
+min_space = 0.0
+
+[sub_resource type="AnimationNodeBlendTree" id=18]
+graph_offset = Vector2( -297.333, 61.6667 )
+nodes/jump/node = SubResource( 23 )
+nodes/jump/position = Vector2( 146.667, 160 )
+nodes/jump_ani/node = SubResource( 15 )
+nodes/jump_ani/position = Vector2( -26.6667, 280 )
+nodes/movement/node = SubResource( 22 )
+nodes/movement/position = Vector2( -173.333, 133.333 )
+nodes/output/position = Vector2( 346.667, 133.333 )
+node_connections = [ "output", 0, "jump", "jump", 0, "movement", "jump", 1, "jump_ani" ]
+
+[sub_resource type="Animation" id=5]
+resource_name = "Dolly_forward"
+length = 20.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("dolly:translation:z")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1, 2, 20 ),
+"transitions": PoolRealArray( 2, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -3.0, -100.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("dolly/Krampus/animation:parameters/movement/blend_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1, 2 ),
+"transitions": PoolRealArray( 1, 0 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[sub_resource type="CubeMesh" id=6]
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="MultiMesh" id=7]
+transform_format = 1
+instance_count = 24
+mesh = SubResource( 6 )
+transform_array = PoolVector3Array( 1, 0, 0, 0, 8, 0, 0, 0, 1, -3, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0, 1, 3, 0, -6.21526, 1, 0, 0, 0, 3, 0, 0, 0, 1, -3, 0, -16.7431, 1, 0, 0, 0, 7, 0, 0, 0, 1, 3, 0, -22.4158, 1, 0, 0, 0, 2, 0, 0, 0, 1, -3, 0, -28.1627, 1, 0, 0, 0, 7, 0, 0, 0, 1, 3, 0, -37.895, 1, 0, 0, 0, 3, 0, 0, 0, 1, -3, 0, -48.6849, 1, 0, 0, 0, 7, 0, 0, 0, 1, 3, 0, -60.2794, 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -69.9102, 1, 0, 0, 0, 9, 0, 0, 0, 1, 3, 0, -75.9449, 1, 0, 0, 0, 7, 0, 0, 0, 1, -3, 0, -85.4422, 1, 0, 0, 0, 7, 0, 0, 0, 1, 3, 0, -93.2155, 1, 0, 0, 0, 5, 0, 0, 0, 1, -3, 0, -103.181, 1, 0, 0, 0, 3, 0, 0, 0, 1, 3, 0, -112.953, 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -118.572, 1, 0, 0, 0, 3, 0, 0, 0, 1, 3, 0, -123.325, 1, 0, 0, 0, 6, 0, 0, 0, 1, -3, 0, -127.915, 1, 0, 0, 0, 5, 0, 0, 0, 1, 3, 0, -133.591, 1, 0, 0, 0, 9, 0, 0, 0, 1, -3, 0, -143.966, 1, 0, 0, 0, 2, 0, 0, 0, 1, 3, 0, -149.075, 1, 0, 0, 0, 4, 0, 0, 0, 1, -3, 0, -159.397, 1, 0, 0, 0, 2, 0, 0, 0, 1, 3, 0, -166.351, 1, 0, 0, 0, 5, 0, 0, 0, 1, -3, 0, -176.276, 1, 0, 0, 0, 5, 0, 0, 0, 1, 3, 0, -185.239 )
+
+[sub_resource type="BoxShape" id=11]
+extents = Vector3( 0.22, 0.11, 0.22 )
+
+[node name="Level" type="Spatial"]
+
+[node name="Path" type="Path" parent="."]
+curve = SubResource( 1 )
+
+[node name="CSGPolygon" type="CSGPolygon" parent="Path"]
+layers = 3
+polygon = PoolVector2Array( -1.8, 0.1, 1.8, 0.1, 0, 0 )
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = SubResource( 4 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.857589, -0.390829, 0.334355, -0.242749, 0.265553, 0.933035, -0.453446, -0.881325, 0.132863, 0, 5, 0 )
+light_energy = 0.75
+shadow_enabled = true
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, -8.96831e-44, 6.02558e-44, 5.60519e-44, 0.906308, 0.422618, -9.24857e-44, -0.422618, 0.906308, 1.26117e-44, 4.9, 3 )
+current = true
+fov = 50.0
+script = ExtResource( 1 )
+target_path = NodePath("../dolly/Krampus/CamLook")
+offset = Vector3( 0, 4, 5 )
+
+[node name="dolly" type="Spatial" parent="."]
+
+[node name="Krampus" type="KinematicBody" parent="dolly"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="swipe" type="Timer" parent="dolly/Krampus"]
+wait_time = 0.1
+one_shot = true
+
+[node name="CamLook" type="Position3D" parent="dolly/Krampus"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="dolly/Krampus"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="dolly/Krampus"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+visible = false
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="jump" type="AnimationPlayer" parent="dolly/Krampus"]
+anims/jump = SubResource( 8 )
+anims/turn_left = SubResource( 24 )
+anims/turn_right = SubResource( 25 )
+
+[node name="box_detector" type="Area" parent="dolly/Krampus"]
+monitorable = false
+
+[node name="CollisionShape" type="CollisionShape" parent="dolly/Krampus/box_detector"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="model" parent="dolly/Krampus" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.805129, 0 )
+
+[node name="Armature" parent="dolly/Krampus/model" index="0"]
+transform = Transform( 0.01, 0, 0, 0, -4.37114e-10, -0.01, 0, 0.01, -4.37114e-10, 0, 0, 0 )
+
+[node name="Skeleton" parent="dolly/Krampus/model/Armature" index="0"]
+bones/2/bound_children = [ NodePath("backpack") ]
+
+[node name="Krampus" parent="dolly/Krampus/model/Armature/Skeleton" index="0"]
+material/0 = ExtResource( 7 )
+
+[node name="Krampus_backpack" parent="dolly/Krampus/model/Armature/Skeleton" index="1"]
+material/0 = ExtResource( 7 )
+
+[node name="backpack" type="BoneAttachment" parent="dolly/Krampus/model/Armature/Skeleton" index="2"]
+transform = Transform( 0.873901, -0.0496853, -0.483558, 0.484945, 0.157743, 0.860201, 0.0335385, -0.986229, 0.161946, 1.47058, -3.19579, -76.1836 )
+bone_name = "mixamorig_Spine1"
+
+[node name="box" type="MeshInstance" parent="dolly/Krampus/model/Armature/Skeleton/backpack"]
+transform = Transform( -100, 5.0288e-09, 8.68823e-06, 7.57273e-07, 99.7725, 6.74149, -8.7183e-06, 6.74149, -99.7725, -1.1143, 2.40177, -31.7337 )
+mesh = SubResource( 10 )
+skeleton = NodePath("../../../../..")
+material/0 = null
+
+[node name="AnimationPlayer" parent="dolly/Krampus/model" index="1"]
+autoplay = "idle-loop"
+
+[node name="animation" type="AnimationTree" parent="dolly/Krampus"]
+tree_root = SubResource( 18 )
+anim_player = NodePath("../model/AnimationPlayer")
+active = true
+parameters/jump/active = false
+parameters/movement/blend_position = 0.0
+
+[node name="Tween" type="Tween" parent="dolly/Krampus"]
+
+[node name="shadow" type="SpotLight" parent="dolly/Krampus"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0 )
+layers = 2
+light_energy = 2.0
+light_negative = true
+light_bake_mode = 0
+light_cull_mask = 4293918722
+spot_range = 14.0
+spot_angle = 1.5
+
+[node name="dolly_move" type="AnimationPlayer" parent="."]
+autoplay = "Dolly_forward"
+anims/Dolly_forward = SubResource( 5 )
+
+[node name="MultiMeshInstance" type="MultiMeshInstance" parent="."]
+multimesh = SubResource( 7 )
+script = ExtResource( 3 )
+
+[node name="boxes" type="Spatial" parent="."]
+
+[node name="box_collect" type="Area" parent="boxes" groups=["boxes"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.4, -6 )
+collision_mask = 0
+monitoring = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="boxes/box_collect"]
+mesh = SubResource( 10 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="boxes/box_collect"]
+shape = SubResource( 11 )
+
+[node name="box_collect2" type="Area" parent="boxes" groups=["boxes"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.4, -15 )
+collision_mask = 0
+monitoring = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="boxes/box_collect2"]
+mesh = SubResource( 10 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="boxes/box_collect2"]
+shape = SubResource( 11 )
+
+[node name="box_collect3" type="Area" parent="boxes" groups=["boxes"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.4, -44.1697 )
+collision_mask = 0
+monitoring = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="boxes/box_collect3"]
+mesh = SubResource( 10 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="boxes/box_collect3"]
+shape = SubResource( 11 )
+
+[node name="box_collect4" type="Area" parent="boxes" groups=["boxes"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09376, 0.4, -31.7055 )
+collision_mask = 0
+monitoring = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="boxes/box_collect4"]
+mesh = SubResource( 10 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="boxes/box_collect4"]
+shape = SubResource( 11 )
+
+[node name="box_collect5" type="Area" parent="boxes" groups=["boxes"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07016, 0.4, -55.725 )
+collision_mask = 0
+monitoring = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="boxes/box_collect5"]
+mesh = SubResource( 10 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="boxes/box_collect5"]
+shape = SubResource( 11 )
+
+[node name="box_collect7" type="Area" parent="boxes" groups=["boxes"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.070163, 0.4, -67.5533 )
+collision_mask = 0
+monitoring = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="boxes/box_collect7"]
+mesh = SubResource( 10 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="boxes/box_collect7"]
+shape = SubResource( 11 )
+
+[node name="box_collect8" type="Area" parent="boxes" groups=["boxes"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.12984, 0.4, -49.0435 )
+collision_mask = 0
+monitoring = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="boxes/box_collect8"]
+mesh = SubResource( 10 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="boxes/box_collect8"]
+shape = SubResource( 11 )
+
+[node name="box_collect6" type="Area" parent="boxes" groups=["boxes"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0103276, 0.4, -88.8155 )
+collision_mask = 0
+monitoring = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="boxes/box_collect6"]
+mesh = SubResource( 10 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="boxes/box_collect6"]
+shape = SubResource( 11 )
+
+[node name="box_collect9" type="Area" parent="boxes" groups=["boxes"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01, 0.4, -96 )
+collision_mask = 0
+monitoring = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="boxes/box_collect9"]
+mesh = SubResource( 10 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="boxes/box_collect9"]
+shape = SubResource( 11 )
+
+[node name="box_collect10" type="Area" parent="boxes" groups=["boxes"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28967, 0.4, -71.8155 )
+collision_mask = 0
+monitoring = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="boxes/box_collect10"]
+mesh = SubResource( 10 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="boxes/box_collect10"]
+shape = SubResource( 11 )
+
+[node name="box_collect11" type="Area" parent="boxes" groups=["boxes"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.21033, 0.4, -93.8155 )
+collision_mask = 0
+monitoring = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="boxes/box_collect11"]
+mesh = SubResource( 10 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="boxes/box_collect11"]
+shape = SubResource( 11 )
+
+[node name="box_collect12" type="Area" parent="boxes" groups=["boxes"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.21033, 0.4, -75.8155 )
+collision_mask = 0
+monitoring = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="boxes/box_collect12"]
+mesh = SubResource( 10 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="boxes/box_collect12"]
+shape = SubResource( 11 )
+
+[node name="Camera2" type="Camera" parent="."]
+transform = Transform( 0.356363, 0, 0.934348, 0, 1, 0, -0.934348, 0, 0.356363, 2.53165, 1.29902, -3.9483 )
+
+[connection signal="area_entered" from="dolly/Krampus/box_detector" to="dolly/Krampus" method="_on_box_detector_area_entered"]
+
+[editable path="dolly/Krampus/model"]

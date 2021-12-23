@@ -1,0 +1,302 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://proto/track1.png" type="Texture" id=1]
+[ext_resource path="res://racks_far.gd" type="Script" id=2]
+[ext_resource path="res://Kramtroller2.gd" type="Script" id=3]
+[ext_resource path="res://audio/Blues_Master-bounce-6.ogg" type="AudioStream" id=4]
+[ext_resource path="res://box_collect.tscn" type="PackedScene" id=5]
+[ext_resource path="res://krampus/krampus_all.glb" type="PackedScene" id=6]
+[ext_resource path="res://factory1/Rack_w_boxes.scn" type="PackedScene" id=7]
+[ext_resource path="res://factory1/Conveyor.scn" type="PackedScene" id=8]
+[ext_resource path="res://pallete.tres" type="Material" id=9]
+[ext_resource path="res://factory1/Rack_mesh.mesh" type="ArrayMesh" id=10]
+
+[sub_resource type="Curve3D" id=1]
+bake_interval = 1.0
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 5.38484, 0, 14.3131, -5.38484, 0, -14.3131, 0, 0, -17.8681, 0, 4.63686, 15.222, 0, -4.63686, -15.222, 0, 0, -69.6677, 0, 0, 0, 0, 0, 0, 0, 0, -100 ),
+"tilts": PoolRealArray( 0, 0, 0, 0 )
+}
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.431373, 0.552941, 0.341176, 1 )
+albedo_texture = ExtResource( 1 )
+uv1_scale = Vector3( 1, 18.4, 1 )
+
+[sub_resource type="CapsuleShape" id=2]
+radius = 0.3
+
+[sub_resource type="SpatialMaterial" id=9]
+albedo_color = Color( 0.670588, 0.521569, 0.247059, 1 )
+
+[sub_resource type="CubeMesh" id=10]
+resource_name = "delivery_box"
+material = SubResource( 9 )
+size = Vector3( 0.368, 0.2, 0.305 )
+
+[sub_resource type="AnimationNodeOneShot" id=23]
+fadein_time = 0.2
+fadeout_time = 0.2
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "jump"
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "idle-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "walk-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "run-loop"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=22]
+blend_point_0/node = SubResource( 19 )
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource( 20 )
+blend_point_1/pos = 0.5
+blend_point_2/node = SubResource( 21 )
+blend_point_2/pos = 1.0
+min_space = 0.0
+
+[sub_resource type="AnimationNodeBlendTree" id=18]
+graph_offset = Vector2( -297.333, 61.6667 )
+nodes/jump/node = SubResource( 23 )
+nodes/jump/position = Vector2( 146.667, 160 )
+nodes/jump_ani/node = SubResource( 15 )
+nodes/jump_ani/position = Vector2( -26.6667, 280 )
+nodes/movement/node = SubResource( 22 )
+nodes/movement/position = Vector2( -173.333, 133.333 )
+nodes/output/position = Vector2( 346.667, 133.333 )
+node_connections = [ "output", 0, "jump", "jump", 0, "movement", "jump", 1, "jump_ani" ]
+
+[sub_resource type="Animation" id=24]
+resource_name = "run1"
+length = 102.0
+tracks/0/type = "audio"
+tracks/0/path = NodePath("../../music_player")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 4 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5, 4, 30 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 1.0, 3.0, 100.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Krampus/model_animations:parameters/movement/blend_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.5, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0.0, 0.5, 1.0 ]
+}
+
+[sub_resource type="MultiMesh" id=7]
+transform_format = 1
+instance_count = 32
+mesh = ExtResource( 10 )
+transform_array = PoolVector3Array( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -10, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -20, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -30, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -40, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -50, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -60, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -70, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -80, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -90, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -100, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -110, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -120, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -130, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -140, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -150, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -160, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -170, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -180, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -190, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -200, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -210, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -220, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -230, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -240, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -250, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -260, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -270, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -280, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -290, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -300, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -310 )
+
+[node name="Level" type="Spatial"]
+
+[node name="Path" type="Path" parent="."]
+curve = SubResource( 1 )
+
+[node name="track_geometry" type="CSGPolygon" parent="Path"]
+layers = 3
+polygon = PoolVector2Array( -1.8, 0.1, 1.8, 0.1, 0, 0 )
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 4.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = SubResource( 4 )
+
+[node name="Krampus_dolly" type="PathFollow" parent="Path"]
+transform = Transform( 0.880495, 0, -0.474055, 0, 1, 0, 0.474055, 0, 0.880495, 0.498541, 0, -0.867149 )
+offset = 1.0
+rotation_mode = 1
+cubic_interp = false
+loop = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Krampus" type="KinematicBody" parent="Path/Krampus_dolly"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0 )
+script = ExtResource( 3 )
+
+[node name="swipe" type="Timer" parent="Path/Krampus_dolly/Krampus"]
+wait_time = 0.1
+one_shot = true
+
+[node name="CollisionShape" type="CollisionShape" parent="Path/Krampus_dolly/Krampus"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="box_detector" type="Area" parent="Path/Krampus_dolly/Krampus"]
+monitorable = false
+
+[node name="CollisionShape" type="CollisionShape" parent="Path/Krampus_dolly/Krampus/box_detector"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="model" parent="Path/Krampus_dolly/Krampus" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.805129, 0 )
+
+[node name="Armature" parent="Path/Krampus_dolly/Krampus/model" index="0"]
+transform = Transform( 0.01, 0, 0, 0, -4.37114e-10, -0.01, 0, 0.01, -4.37114e-10, 0, 0, 0 )
+
+[node name="Skeleton" parent="Path/Krampus_dolly/Krampus/model/Armature" index="0"]
+bones/2/bound_children = [ NodePath("backpack") ]
+
+[node name="Krampus" parent="Path/Krampus_dolly/Krampus/model/Armature/Skeleton" index="0"]
+material/0 = ExtResource( 9 )
+
+[node name="Krampus_backpack" parent="Path/Krampus_dolly/Krampus/model/Armature/Skeleton" index="1"]
+material/0 = ExtResource( 9 )
+
+[node name="backpack" type="BoneAttachment" parent="Path/Krampus_dolly/Krampus/model/Armature/Skeleton" index="2"]
+transform = Transform( 0.873975, -0.0341506, -0.484769, 0.484858, 0.128736, 0.865066, 0.0328648, -0.991091, 0.12907, 1.66903, -2.827, -76.4518 )
+bone_name = "mixamorig_Spine1"
+
+[node name="box" type="MeshInstance" parent="Path/Krampus_dolly/Krampus/model/Armature/Skeleton/backpack"]
+transform = Transform( -100, 5.0288e-09, 8.68823e-06, 7.57273e-07, 99.7725, 6.74149, -8.7183e-06, 6.74149, -99.7725, -1.1143, 2.40177, -31.7337 )
+mesh = SubResource( 10 )
+skeleton = NodePath("../../../../..")
+material/0 = null
+
+[node name="AnimationPlayer" parent="Path/Krampus_dolly/Krampus/model" index="1"]
+autoplay = "idle-loop"
+
+[node name="model_animations" type="AnimationTree" parent="Path/Krampus_dolly/Krampus"]
+tree_root = SubResource( 18 )
+anim_player = NodePath("../model/AnimationPlayer")
+active = true
+parameters/jump/active = false
+parameters/movement/blend_position = 0.0
+
+[node name="Tween" type="Tween" parent="Path/Krampus_dolly/Krampus"]
+
+[node name="Camera" type="Camera" parent="Path/Krampus_dolly"]
+transform = Transform( 1, 4.65661e-10, -9.31323e-10, 0, 0.925824, 0.377954, 9.31323e-10, -0.377954, 0.925825, -0.00896517, 2.9346, 1.96737 )
+fov = 90.0
+
+[node name="move_and_play" type="AnimationPlayer" parent="Path/Krampus_dolly"]
+autoplay = "run1"
+anims/run1 = SubResource( 24 )
+
+[node name="box" type="PathFollow" parent="Path"]
+transform = Transform( 0.993106, 0, 0.117216, 0, 1, 0, -0.117216, 0, 0.993106, 2.22491, 0, -4.42781 )
+offset = 5.0
+
+[node name="box" parent="Path/box" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.204343, 0 )
+
+[node name="racks_parallel" type="PathFollow" parent="Path"]
+transform = Transform( -0.993058, -0.00446423, 0.117541, -0.00340816, 0.999952, 0.00918402, -0.117577, 0.00871972, -0.993021, 2.38631, 0, -7.313 )
+offset = 7.94
+rotation_mode = 2
+cubic_interp = false
+loop = false
+
+[node name="rack_base" parent="Path/racks_parallel" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -5 )
+
+[node name="rack_base2" parent="Path/racks_parallel" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -5 )
+
+[node name="racks_parallel2" type="PathFollow" parent="Path"]
+transform = Transform( -0.995105, 0.0292983, 0.0943794, 0.0250526, 0.998634, -0.0458606, -0.0955942, -0.0432717, -0.994477, -0.826255, 1.98726, -56.4418 )
+offset = 57.78
+rotation_mode = 4
+cubic_interp = false
+loop = false
+
+[node name="rack_base" parent="Path/racks_parallel2" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -5 )
+
+[node name="rack_base2" parent="Path/racks_parallel2" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -5 )
+
+[node name="racks_perp" type="PathFollow" parent="Path"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.35661, 0.816469, -31.7963 )
+offset = 33.03
+rotation_mode = 0
+cubic_interp = false
+loop = false
+
+[node name="rack_base" parent="Path/racks_perp" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 0, -5 )
+
+[node name="rack_base2" parent="Path/racks_perp" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12, 0, -5 )
+
+[node name="racks_cross" type="PathFollow" parent="Path"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.06073, -73.8951 )
+offset = 75.6
+rotation_mode = 0
+cubic_interp = false
+loop = false
+
+[node name="rack_base" parent="Path/racks_cross" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.10229, 0, -1.07077 )
+
+[node name="rack_base2" parent="Path/racks_cross" instance=ExtResource( 7 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -5.78726, 0, 5.29344 )
+
+[node name="conveyors_parallel" type="PathFollow" parent="Path"]
+transform = Transform( -0.993264, 0.0170756, -0.114609, 0.00866581, 0.997259, 0.0734797, 0.115549, 0.0719915, -0.99069, -1.93054, 0.356695, -26.0994 )
+offset = 27.29
+rotation_mode = 4
+cubic_interp = false
+loop = false
+
+[node name="Conveyor" parent="Path/conveyors_parallel" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0 )
+
+[node name="Conveyor2" parent="Path/conveyors_parallel" instance=ExtResource( 8 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 0, 0 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.875483, -0.412486, 0.251763, -0.167082, 0.23048, 0.958626, -0.453446, -0.881325, 0.132862, 0, 5, 0 )
+light_energy = 0.75
+shadow_enabled = true
+
+[node name="racks_far" type="MultiMeshInstance" parent="."]
+multimesh = SubResource( 7 )
+script = ExtResource( 2 )
+
+[node name="music_player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = 16.0
+
+[connection signal="area_entered" from="Path/Krampus_dolly/Krampus/box_detector" to="Path/Krampus_dolly/Krampus" method="_on_box_detector_area_entered"]
+
+[editable path="Path/Krampus_dolly/Krampus/model"]
