@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://proto/track1.png" type="Texture" id=1]
 [ext_resource path="res://racks_far.gd" type="Script" id=2]
@@ -10,6 +10,14 @@
 [ext_resource path="res://factory1/Conveyor.scn" type="PackedScene" id=8]
 [ext_resource path="res://pallete.tres" type="Material" id=9]
 [ext_resource path="res://factory1/Rack_mesh.mesh" type="ArrayMesh" id=10]
+[ext_resource path="res://krampus/T-pose.anim" type="Animation" id=11]
+[ext_resource path="res://krampus/die.anim" type="Animation" id=12]
+[ext_resource path="res://krampus/idle-loop.anim" type="Animation" id=13]
+[ext_resource path="res://krampus/wave.anim" type="Animation" id=14]
+[ext_resource path="res://krampus/open_box.anim" type="Animation" id=15]
+[ext_resource path="res://krampus/jump.anim" type="Animation" id=16]
+[ext_resource path="res://krampus/run-loop.anim" type="Animation" id=17]
+[ext_resource path="res://krampus/walk-loop.anim" type="Animation" id=18]
 
 [sub_resource type="Curve3D" id=1]
 bake_interval = 1.0
@@ -60,7 +68,7 @@ blend_point_2/pos = 1.0
 min_space = 0.0
 
 [sub_resource type="AnimationNodeBlendTree" id=18]
-graph_offset = Vector2( -297.333, 61.6667 )
+graph_offset = Vector2( -629.333, -15.3333 )
 nodes/jump/node = SubResource( 23 )
 nodes/jump/position = Vector2( 146.667, 160 )
 nodes/jump_ani/node = SubResource( 15 )
@@ -139,7 +147,7 @@ path_joined = false
 material = SubResource( 4 )
 
 [node name="Krampus_dolly" type="PathFollow" parent="Path"]
-transform = Transform( 0.880495, 0, -0.474055, 0, 1, 0, 0.474055, 0, 0.880495, 0.498541, 0, -0.867149 )
+transform = Transform( 0.880495, 0, -0.474055, 0, 1, 0, 0.474055, 0, 0.880495, 0.703983, 0, -0.709784 )
 offset = 1.0
 rotation_mode = 1
 cubic_interp = false
@@ -173,9 +181,6 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.8
 [node name="Armature" parent="Path/Krampus_dolly/Krampus/model" index="0"]
 transform = Transform( 0.01, 0, 0, 0, -4.37114e-10, -0.01, 0, 0.01, -4.37114e-10, 0, 0, 0 )
 
-[node name="Skeleton" parent="Path/Krampus_dolly/Krampus/model/Armature" index="0"]
-bones/2/bound_children = [ NodePath("backpack") ]
-
 [node name="Krampus" parent="Path/Krampus_dolly/Krampus/model/Armature/Skeleton" index="0"]
 material/0 = ExtResource( 9 )
 
@@ -183,7 +188,7 @@ material/0 = ExtResource( 9 )
 material/0 = ExtResource( 9 )
 
 [node name="backpack" type="BoneAttachment" parent="Path/Krampus_dolly/Krampus/model/Armature/Skeleton" index="2"]
-transform = Transform( 0.873975, -0.0341506, -0.484769, 0.484858, 0.128736, 0.865066, 0.0328648, -0.991091, 0.12907, 1.66903, -2.827, -76.4518 )
+transform = Transform( 0.873572, -0.0493265, -0.484189, 0.485535, 0.156963, 0.860011, 0.0335783, -0.986372, 0.161068, 1.4885, -3.21019, -76.191 )
 bone_name = "mixamorig_Spine1"
 
 [node name="box" type="MeshInstance" parent="Path/Krampus_dolly/Krampus/model/Armature/Skeleton/backpack"]
@@ -195,9 +200,19 @@ material/0 = null
 [node name="AnimationPlayer" parent="Path/Krampus_dolly/Krampus/model" index="1"]
 autoplay = "idle-loop"
 
+[node name="Animation_sounds" type="AnimationPlayer" parent="Path/Krampus_dolly/Krampus/model"]
+anims/T-pose = ExtResource( 11 )
+anims/die = ExtResource( 12 )
+anims/idle-loop = ExtResource( 13 )
+anims/jump = ExtResource( 16 )
+anims/open_box = ExtResource( 15 )
+anims/run-loop = ExtResource( 17 )
+anims/walk-loop = ExtResource( 18 )
+anims/wave = ExtResource( 14 )
+
 [node name="model_animations" type="AnimationTree" parent="Path/Krampus_dolly/Krampus"]
 tree_root = SubResource( 18 )
-anim_player = NodePath("../model/AnimationPlayer")
+anim_player = NodePath("../model/Animation_sounds")
 active = true
 parameters/jump/active = false
 parameters/movement/blend_position = 0.0
@@ -213,7 +228,7 @@ autoplay = "run1"
 anims/run1 = SubResource( 24 )
 
 [node name="box" type="PathFollow" parent="Path"]
-transform = Transform( 0.993106, 0, 0.117216, 0, 1, 0, -0.117216, 0, 0.993106, 2.22491, 0, -4.42781 )
+transform = Transform( 0.993106, 0, 0.117216, 0, 1, 0, -0.117216, 0, 0.993106, 2.19169, 0, -4.38189 )
 offset = 5.0
 
 [node name="box" parent="Path/box" instance=ExtResource( 5 )]
@@ -233,7 +248,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -5 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -5 )
 
 [node name="racks_parallel2" type="PathFollow" parent="Path"]
-transform = Transform( -0.995105, 0.0292983, 0.0943794, 0.0250526, 0.998634, -0.0458606, -0.0955942, -0.0432717, -0.994477, -0.826255, 1.98726, -56.4418 )
+transform = Transform( -0.995105, 0.0292983, 0.0943793, 0.0250526, 0.998634, -0.0458605, -0.0955943, -0.0432717, -0.994477, -0.826255, 1.98726, -56.4418 )
 offset = 57.78
 rotation_mode = 4
 cubic_interp = false
@@ -272,7 +287,7 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.10229
 transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -5.78726, 0, 5.29344 )
 
 [node name="conveyors_parallel" type="PathFollow" parent="Path"]
-transform = Transform( -0.993264, 0.0170756, -0.114609, 0.00866581, 0.997259, 0.0734797, 0.115549, 0.0719915, -0.99069, -1.93054, 0.356695, -26.0994 )
+transform = Transform( -0.993264, 0.0170756, -0.114609, 0.0086658, 0.997259, 0.0734797, 0.115549, 0.0719915, -0.99069, -1.93054, 0.356695, -26.0994 )
 offset = 27.29
 rotation_mode = 4
 cubic_interp = false
@@ -295,7 +310,7 @@ script = ExtResource( 2 )
 
 [node name="music_player" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = 16.0
+volume_db = -21.5834
 
 [connection signal="area_entered" from="Path/Krampus_dolly/Krampus/box_detector" to="Path/Krampus_dolly/Krampus" method="_on_box_detector_area_entered"]
 
