@@ -1,9 +1,10 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://proto/CamFollow.gd" type="Script" id=1]
 [ext_resource path="res://proto/track1.png" type="Texture" id=2]
 [ext_resource path="res://proto/fence.gd" type="Script" id=3]
 [ext_resource path="res://Kramtroller.gd" type="Script" id=4]
+[ext_resource path="res://tmp_obstacles.tscn" type="PackedScene" id=5]
 [ext_resource path="res://krampus/krampus_all.glb" type="PackedScene" id=6]
 [ext_resource path="res://pallete.tres" type="Material" id=7]
 
@@ -286,7 +287,7 @@ material/0 = ExtResource( 7 )
 material/0 = ExtResource( 7 )
 
 [node name="backpack" type="BoneAttachment" parent="dolly/Krampus/model/Armature/Skeleton" index="2"]
-transform = Transform( 0.873901, -0.0496853, -0.483558, 0.484945, 0.157743, 0.860201, 0.0335385, -0.986229, 0.161946, 1.47058, -3.19579, -76.1836 )
+transform = Transform( 0.874156, -0.0462326, -0.48344, 0.484469, 0.152275, 0.861453, 0.0337885, -0.987256, 0.15551, 1.4959, -3.15146, -76.2344 )
 bone_name = "mixamorig_Spine1"
 
 [node name="box" type="MeshInstance" parent="dolly/Krampus/model/Armature/Skeleton/backpack"]
@@ -509,6 +510,8 @@ shape = SubResource( 11 )
 
 [node name="Camera2" type="Camera" parent="."]
 transform = Transform( 0.356363, 0, 0.934348, 0, 1, 0, -0.934348, 0, 0.356363, 2.53165, 1.29902, -3.9483 )
+
+[node name="obstacles" parent="." instance=ExtResource( 5 )]
 
 [connection signal="area_entered" from="dolly/Krampus/box_detector" to="dolly/Krampus" method="_on_box_detector_area_entered"]
 
