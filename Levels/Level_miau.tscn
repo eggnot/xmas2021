@@ -1,8 +1,19 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://PackageOnPath.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Level3.tscn" type="PackedScene" id=2]
 [ext_resource path="res://MetalBoxObsF.tscn" type="PackedScene" id=3]
+[ext_resource path="res://factory1/Rack_w_boxes.scn" type="PackedScene" id=4]
+[ext_resource path="res://box_collect.tscn" type="PackedScene" id=5]
+[ext_resource path="res://factory1/Conveyor.scn" type="PackedScene" id=6]
+[ext_resource path="res://racks_far.gd" type="Script" id=7]
+[ext_resource path="res://factory1/Rack_mesh.mesh" type="ArrayMesh" id=8]
+
+[sub_resource type="MultiMesh" id=1]
+transform_format = 1
+instance_count = 32
+mesh = ExtResource( 8 )
+transform_array = PoolVector3Array( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -10, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -20, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -30, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -40, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -50, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -60, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -70, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -80, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -90, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -100, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -110, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -120, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -130, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -140, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -150, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -160, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -170, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -180, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -190, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -200, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -210, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -220, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -230, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -240, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -250, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -260, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -270, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -280, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -290, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -300, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -310 )
 
 [node name="Level" instance=ExtResource( 2 )]
 
@@ -10,7 +21,7 @@
 transform = Transform( -0.891581, 0, -0.452861, 0, 1, 0, 0.452862, 0, -0.891579, -0.654912, 0, -1.22405 )
 
 [node name="backpack" parent="Path/Krampus_dolly/KramJump/model/Armature/Skeleton" index="2"]
-transform = Transform( 0.873432, -0.0466453, -0.484707, 0.485769, 0.152622, 0.860659, 0.033831, -0.987183, 0.155964, 1.54706, -3.20284, -76.225 )
+transform = Transform( 0.87377, -0.0423326, -0.484493, 0.48518, 0.144585, 0.862377, 0.0335436, -0.988586, 0.146873, 1.59069, -3.10739, -76.2964 )
 
 [node name="Finish" parent="Path" index="2"]
 transform = Transform( -0.851113, 0, 0.524982, 0, 1, 0, -0.524982, 0, -0.851113, -3.32443, 0, -94.7393 )
@@ -71,7 +82,7 @@ offset = 50.0
 h_offset = 1.2
 
 [node name="Package12" parent="Path" index="14" instance=ExtResource( 1 )]
-transform = Transform( -0.999948, 0, 0.0101893, 0, 1, 0, -0.0101894, 0, -0.999944, -15.2629, 0, -52.6476 )
+transform = Transform( -0.999948, 0, 0.0101893, 0, 1, 0, -0.0101893, 0, -0.999944, -15.2629, 0, -52.6476 )
 offset = 55.0
 h_offset = 1.2
 
@@ -199,7 +210,7 @@ transform = Transform( -0.999949, 0, 0.0101893, 0, 1, 0, -0.0101894, 0, -0.99994
 offset = 55.0
 
 [node name="MetalBoxObsF15" parent="Path" index="41" instance=ExtResource( 3 )]
-transform = Transform( -0.997865, 0, 0.0653206, 0, 1, 0, -0.0653207, 0, -0.997864, -14.0012, 0, -57.6418 )
+transform = Transform( -0.997865, 0, 0.0653206, 0, 1, 0, -0.0653206, 0, -0.997864, -14.0012, 0, -57.6418 )
 offset = 60.0
 
 [node name="MetalBoxObsF16" parent="Path" index="42" instance=ExtResource( 3 )]
@@ -207,13 +218,90 @@ transform = Transform( -0.970046, 0, 0.242927, 0, 1, 0, -0.242927, 0, -0.970045,
 offset = 75.0
 
 [node name="MetalBoxObsF17" parent="Path" index="43" instance=ExtResource( 3 )]
-transform = Transform( -0.970046, 0, 0.242927, 0, 1, 0, -0.242927, 0, -0.970044, -10.8791, 0, -72.2029 )
+transform = Transform( -0.970046, 0, 0.242926, 0, 1, 0, -0.242927, 0, -0.970044, -10.8791, 0, -72.2029 )
 offset = 75.0
 h_offset = -1.2
 
 [node name="MetalBoxObsF18" parent="Path" index="44" instance=ExtResource( 3 )]
-transform = Transform( -0.970046, 0, 0.242927, 0, 1, 0, -0.242927, 0, -0.970044, -13.2072, 0, -72.7859 )
+transform = Transform( -0.970046, 0, 0.242926, 0, 1, 0, -0.242927, 0, -0.970044, -13.2072, 0, -72.7859 )
 offset = 75.0
 h_offset = 1.2
+
+[node name="box" type="PathFollow" parent="Path" index="45"]
+transform = Transform( 0.993106, 0, 0.117216, 0, 1, 0, -0.117216, 0, 0.993106, -2.30368, 0, -4.43497 )
+offset = 5.0
+
+[node name="box" parent="Path/box" index="0" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.204343, 0 )
+
+[node name="racks_parallel" type="PathFollow" parent="Path" index="46"]
+transform = Transform( -0.928619, 0.000242747, -0.371034, -0.00340816, 0.999952, 0.00918402, 0.37102, 0.00979306, -0.928569, -3.54095, 0, -7.09734 )
+offset = 7.94
+rotation_mode = 2
+cubic_interp = false
+loop = false
+
+[node name="rack_base" parent="Path/racks_parallel" index="0" instance=ExtResource( 4 )]
+transform = Transform( 1, 3.49246e-10, 0, -4.65661e-10, 1, 0, -7.45058e-09, 0, 1, 4, 7.45058e-09, -5 )
+
+[node name="rack_base2" parent="Path/racks_parallel" index="1" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -5 )
+
+[node name="racks_parallel2" type="PathFollow" parent="Path" index="47"]
+transform = Transform( -0.999174, 0, 0.0406412, 0, 1, 0, -0.0406413, 0, -0.999171, -14.0476, 0, -55.4172 )
+offset = 57.78
+rotation_mode = 4
+cubic_interp = false
+loop = false
+
+[node name="rack_base" parent="Path/racks_parallel2" index="0" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -5 )
+
+[node name="rack_base2" parent="Path/racks_parallel2" index="1" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -5 )
+
+[node name="racks_perp" type="PathFollow" parent="Path" index="48"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.4564, 0, -30.8893 )
+offset = 33.03
+rotation_mode = 0
+cubic_interp = false
+loop = false
+
+[node name="rack_base" parent="Path/racks_perp" index="0" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 0, -5 )
+
+[node name="rack_base2" parent="Path/racks_perp" index="1" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12, 0, -5 )
+
+[node name="racks_cross" type="PathFollow" parent="Path" index="49"]
+transform = Transform( -0.269004, 0, -0.963139, 0, 1, 0, 0.963139, 0, -0.269004, -11.9193, 0, -73.0814 )
+offset = 75.6
+rotation_mode = 0
+cubic_interp = false
+loop = false
+
+[node name="rack_base" parent="Path/racks_cross" index="0" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.10229, 0, -1.07077 )
+
+[node name="rack_base2" parent="Path/racks_cross" index="1" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -5.78726, 0, 5.29344 )
+
+[node name="conveyors_parallel" type="PathFollow" parent="Path" index="50"]
+transform = Transform( -0.968658, 0, -0.248398, 0, 1, 0, 0.248398, 0, -0.968659, -10.0716, 0, -25.3075 )
+offset = 27.29
+rotation_mode = 4
+cubic_interp = false
+loop = false
+
+[node name="Conveyor" parent="Path/conveyors_parallel" index="0" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0 )
+
+[node name="Conveyor2" parent="Path/conveyors_parallel" index="1" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 0, 0 )
+
+[node name="racks_far" type="MultiMeshInstance" parent="Path" index="51"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.723, -3.51265, 4.94807 )
+multimesh = SubResource( 1 )
+script = ExtResource( 7 )
 
 [editable path="Path/Krampus_dolly/KramJump/model"]
