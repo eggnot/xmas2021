@@ -185,7 +185,7 @@ __meta__ = {
 }
 
 [node name="Krampus_dolly" type="PathFollow" parent="Path"]
-transform = Transform( -0.891581, 0, -0.452861, 0, 1, 0, 0.452862, 0, -0.891579, -0.654911, 0, -1.22405 )
+transform = Transform( -0.891581, 0, -0.452861, 0, 1, 0, 0.452862, 0, -0.891579, -0.654912, 0, -1.22405 )
 offset = 1.67119
 rotation_mode = 4
 loop = false
@@ -214,9 +214,6 @@ shape = SubResource( 2 )
 [node name="Armature" parent="Path/Krampus_dolly/KramJump/model" index="0"]
 transform = Transform( 0.01, 0, 0, 0, -4.37114e-10, -0.01, 0, 0.01, -4.37114e-10, 0, 0, 0 )
 
-[node name="Skeleton" parent="Path/Krampus_dolly/KramJump/model/Armature" index="0"]
-bones/2/bound_children = [ NodePath("backpack") ]
-
 [node name="Krampus" parent="Path/Krampus_dolly/KramJump/model/Armature/Skeleton" index="0"]
 material/0 = ExtResource( 10 )
 
@@ -224,7 +221,7 @@ material/0 = ExtResource( 10 )
 material/0 = ExtResource( 10 )
 
 [node name="backpack" type="BoneAttachment" parent="Path/Krampus_dolly/KramJump/model/Armature/Skeleton" index="2"]
-transform = Transform( 0.874112, -0.0373522, -0.484286, 0.484598, 0.134927, 0.864268, 0.0330608, -0.990151, 0.136042, 1.66201, -3.01618, -76.3644 )
+transform = Transform( 0.873419, -0.0474975, -0.484647, 0.485786, 0.154316, 0.860348, 0.0339241, -0.986879, 0.157856, 1.53678, -3.21016, -76.2153 )
 bone_name = "mixamorig_Spine1"
 
 [node name="box" type="MeshInstance" parent="Path/Krampus_dolly/KramJump/model/Armature/Skeleton/backpack"]

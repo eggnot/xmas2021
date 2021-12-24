@@ -166,14 +166,16 @@ func _on_collision(area: Area):
 	if area.is_in_group('Platform'):
 		on_platform = true
 	elif area.is_in_group('Obstacles'):
+		area.get_parent().queue_free()
 		_lose()
 	elif area.is_in_group('Finish'):
+		area.get_parent().queue_free()
 		_win()
 	elif area.is_in_group('PickupBoxes'):
 		add_one_box()
+		area.get_parent().queue_free()
 #		print('PickupBox')
 	
-	area.get_parent().queue_free()
 
 		#sounds.get_node('Pickup').play()
 
