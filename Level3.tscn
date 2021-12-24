@@ -1,0 +1,227 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://proto/track1.png" type="Texture" id=1]
+[ext_resource path="res://audio/Blues_Master-bounce-6.ogg" type="AudioStream" id=2]
+[ext_resource path="res://box_collect.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Kramtroller3.gd" type="Script" id=4]
+[ext_resource path="res://factory1/MetalBox.scn" type="PackedScene" id=5]
+[ext_resource path="res://krampus/krampus_all.glb" type="PackedScene" id=6]
+[ext_resource path="res://pallete.tres" type="Material" id=10]
+
+[sub_resource type="Curve3D" id=1]
+bake_interval = 4.0
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -100 ),
+"tilts": PoolRealArray( 0, 0 )
+}
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.431373, 0.552941, 0.341176, 1 )
+albedo_texture = ExtResource( 1 )
+uv1_scale = Vector3( 1, 18.4, 1 )
+
+[sub_resource type="CapsuleShape" id=2]
+radius = 0.3
+
+[sub_resource type="SpatialMaterial" id=9]
+albedo_color = Color( 0.670588, 0.521569, 0.247059, 1 )
+
+[sub_resource type="CubeMesh" id=10]
+resource_name = "delivery_box"
+material = SubResource( 9 )
+size = Vector3( 0.368, 0.2, 0.305 )
+
+[sub_resource type="AnimationNodeOneShot" id=23]
+fadein_time = 0.2
+fadeout_time = 0.2
+sync = true
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "jump"
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "idle-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "walk-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "run-loop"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=22]
+blend_point_0/node = SubResource( 19 )
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource( 20 )
+blend_point_1/pos = 0.5
+blend_point_2/node = SubResource( 21 )
+blend_point_2/pos = 1.0
+min_space = 0.0
+
+[sub_resource type="AnimationNodeBlendTree" id=18]
+graph_offset = Vector2( -300, 91 )
+nodes/jump/node = SubResource( 23 )
+nodes/jump/position = Vector2( 146.667, 160 )
+nodes/jump_ani/node = SubResource( 15 )
+nodes/jump_ani/position = Vector2( -26.6667, 280 )
+nodes/movement/node = SubResource( 22 )
+nodes/movement/position = Vector2( -173.333, 133.333 )
+nodes/output/position = Vector2( 346.667, 133.333 )
+node_connections = [ "output", 0, "jump", "jump", 0, "movement", "jump", 1, "jump_ani" ]
+
+[sub_resource type="Animation" id=24]
+resource_name = "run1"
+length = 102.0
+tracks/0/type = "audio"
+tracks/0/path = NodePath("../../music_player")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 2 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5, 4, 30 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 1.0, 3.0, 100.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("KramJump/model_animations:parameters/movement/blend_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.5, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0.0, 0.5, 1.0 ]
+}
+
+[node name="Level" type="Spatial"]
+
+[node name="Path" type="Path" parent="."]
+curve = SubResource( 1 )
+
+[node name="track_geometry" type="CSGPolygon" parent="Path"]
+layers = 3
+polygon = PoolVector2Array( -1.8, 0.1, 1.8, 0.1, 0, 0 )
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 4.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = SubResource( 4 )
+
+[node name="Krampus_dolly" type="PathFollow" parent="Path"]
+transform = Transform( 0.999935, 0, -0.0113791, 0, 1, 0, 0.0113791, 0, 0.999935, 0, 0, -1.00011 )
+offset = 1.0
+rotation_mode = 1
+cubic_interp = false
+loop = false
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+gravity = -20.0
+jump_velocity = 8.5
+
+[node name="swipe" type="Timer" parent="Path/Krampus_dolly"]
+wait_time = 0.1
+one_shot = true
+
+[node name="KramJump" type="Area" parent="Path/Krampus_dolly"]
+transform = Transform( 1, 0, -9.31323e-10, 0, 1, 0, 9.31323e-10, 0, 1, 0, 0, 0 )
+monitorable = false
+
+[node name="CollisionShape" type="CollisionShape" parent="Path/Krampus_dolly/KramJump"]
+transform = Transform( 1, 9.31323e-10, 5.55112e-17, 0, -4.37114e-08, 1, 9.31323e-10, -1, -4.37114e-08, 0, 0.9, 0 )
+shape = SubResource( 2 )
+
+[node name="model" parent="Path/Krampus_dolly/KramJump" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.28877e-08, 0, 1, 0, 8.28877e-08, 0, -1, 0, 0.09, 0 )
+
+[node name="Armature" parent="Path/Krampus_dolly/KramJump/model" index="0"]
+transform = Transform( 0.01, 0, 0, 0, -4.37114e-10, -0.01, 0, 0.01, -4.37114e-10, 0, 0, 0 )
+
+[node name="Skeleton" parent="Path/Krampus_dolly/KramJump/model/Armature" index="0"]
+bones/2/bound_children = [ NodePath("backpack") ]
+
+[node name="Krampus" parent="Path/Krampus_dolly/KramJump/model/Armature/Skeleton" index="0"]
+material/0 = ExtResource( 10 )
+
+[node name="Krampus_backpack" parent="Path/Krampus_dolly/KramJump/model/Armature/Skeleton" index="1"]
+material/0 = ExtResource( 10 )
+
+[node name="backpack" type="BoneAttachment" parent="Path/Krampus_dolly/KramJump/model/Armature/Skeleton" index="2"]
+transform = Transform( 0.87392, -0.0363621, -0.484708, 0.484905, 0.134213, 0.864207, 0.0336299, -0.990285, 0.134924, 1.63872, -2.84229, -76.4098 )
+bone_name = "mixamorig_Spine1"
+
+[node name="box" type="MeshInstance" parent="Path/Krampus_dolly/KramJump/model/Armature/Skeleton/backpack"]
+transform = Transform( -100, 5.0288e-09, 8.68823e-06, 7.57273e-07, 99.7725, 6.74149, -8.7183e-06, 6.74149, -99.7725, -1.1143, 2.40177, -31.7337 )
+mesh = SubResource( 10 )
+skeleton = NodePath("")
+material/0 = null
+
+[node name="AnimationPlayer" parent="Path/Krampus_dolly/KramJump/model" index="1"]
+autoplay = "idle-loop"
+
+[node name="model_animations" type="AnimationTree" parent="Path/Krampus_dolly/KramJump"]
+tree_root = SubResource( 18 )
+anim_player = NodePath("../model/AnimationPlayer")
+active = true
+parameters/jump/active = false
+parameters/movement/blend_position = 0.0
+
+[node name="tween" type="Tween" parent="Path/Krampus_dolly"]
+
+[node name="move_and_play" type="AnimationPlayer" parent="Path/Krampus_dolly"]
+anims/run1 = SubResource( 24 )
+
+[node name="Camera" type="Camera" parent="Path/Krampus_dolly"]
+transform = Transform( 0.999999, 0.0016402, 0.000522617, -0.00171958, 0.965924, 0.25882, -8.0293e-05, -0.25882, 0.965926, -0.00723598, 2.88592, 2.11933 )
+fov = 90.0
+
+[node name="box" type="PathFollow" parent="Path"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.00043 )
+visible = false
+offset = 4.0
+
+[node name="box" parent="Path/box" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.204343, 0 )
+visible = false
+
+[node name="obs" type="PathFollow" parent="Path"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.60548 )
+offset = 1.87
+
+[node name="MetalBox" parent="Path/obs" instance=ExtResource( 5 )]
+skeleton = NodePath("../../Krampus_dolly")
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.875483, -0.412486, 0.251763, -0.167082, 0.23048, 0.958626, -0.453446, -0.881325, 0.132862, 0, 5, 0 )
+light_energy = 0.75
+shadow_enabled = true
+
+[node name="music_player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = 16.0
+
+[editable path="Path/Krampus_dolly/KramJump/model"]

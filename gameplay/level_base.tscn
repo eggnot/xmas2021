@@ -14,8 +14,8 @@
 
 [sub_resource type="Curve3D" id=1]
 _data = {
-"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -0.381168, -1.04799, -0.551163, -18.7246, 0.0903625, -8.51118, 18.7246, -0.0903625, 8.51118, 37.5643, -0.938644, 8.91047, 7.85876, -0.0903625, -20.8707, -7.85876, 0.0903625, 20.8707, 62.8546, -0.125397, 64.7194, 3.68733, 0.361435, -26.5204, -3.68733, -0.361435, 26.5204, 27.7151, -0.215759, 114.348, -20.3089, 0, -8.54324, 20.3089, 0, 8.54324, 59.3411, 0.157532, 159.447, 0, 0, 0, 0, 0, 0, 116.033, 0.157532, 166.933 ),
-"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0 )
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -0.381168, -1.04799, -0.551163, -9.55041, 0.0903625, -34.4746, 9.55041, -0.0903625, 34.4746, 59.2767, -0.938644, 38.9605, -0.583702, 0.361435, -44.4069, 0.583702, -0.361435, 44.4069, 27.7151, -0.215759, 114.348, 0, 0, 0, 0, 0, 0, 116.033, 0.157532, 166.933 ),
+"tilts": PoolRealArray( 0, 0, 0, 0 )
 }
 
 [sub_resource type="SpatialMaterial" id=2]
@@ -2093,7 +2093,7 @@ nodes/jump_ani/position = Vector2( 0, 368 )
 nodes/movement/node = SubResource( 22 )
 nodes/movement/position = Vector2( -192, 128 )
 nodes/output/position = Vector2( 432, 128 )
-node_connections = [ "output", 0, "die", "jump", 0, "movement", "jump", 1, "jump_ani", "die", 0, "jump", "die", 1, "Animation" ]
+node_connections = [ "output", 0, "die", "die", 0, "jump", "die", 1, "Animation", "jump", 0, "movement", "jump", 1, "jump_ani" ]
 
 [node name="LevelBase" type="Spatial"]
 
@@ -2149,7 +2149,7 @@ material/0 = ExtResource( 3 )
 material/0 = ExtResource( 3 )
 
 [node name="backpack" type="BoneAttachment" parent="TrackPath/Krampus/Model/Armature/Skeleton" index="2"]
-transform = Transform( 0.976077, -0.091377, -0.197291, 0.217425, 0.410455, 0.885581, 5.73108e-05, -0.907291, 0.420503, 1.21921, 1.90359, -71.7659 )
+transform = Transform( 0.979284, 0.0994206, 0.176403, -0.201376, 0.386906, 0.899862, 0.0212136, -0.916744, 0.398912, -1.15333, 1.39728, -73.8235 )
 bone_name = "mixamorig_Spine1"
 
 [node name="box" type="MeshInstance" parent="TrackPath/Krampus/Model/Armature/Skeleton/backpack"]
