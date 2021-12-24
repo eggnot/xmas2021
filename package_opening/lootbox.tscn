@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://krampus/Hat.mesh" type="ArrayMesh" id=1]
 [ext_resource path="res://package_opening/click_area.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://factory1/Conveyor.scn" type="PackedScene" id=7]
 [ext_resource path="res://factory1/Conv_table.scn" type="PackedScene" id=8]
 [ext_resource path="res://audio/WIN-bounce-1.wav" type="AudioStream" id=9]
+[ext_resource path="res://package_opening/lootbox_scene.gd" type="Script" id=10]
 
 [sub_resource type="SpatialMaterial" id=26]
 albedo_texture = ExtResource( 4 )
@@ -289,7 +290,6 @@ tracks/8/keys = {
 [sub_resource type="Animation" id=22]
 resource_name = "OpenIdle"
 length = 5.0
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Item:rotation_degrees")
 tracks/0/interp = 1
@@ -314,6 +314,44 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector3( 0, 1, 0 ), Vector3( 0, 1.1, 0 ), Vector3( 0, 1, 0 ), Vector3( 0, 1.1, 0 ), Vector3( 0, 1, 0 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("../ColorRect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../ColorRect:modulate")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 2, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 3.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_next_scene"
+} ]
+}
 
 [sub_resource type="BoxShape" id=14]
 extents = Vector3( 0.379099, 0.213415, 0.268976 )
@@ -330,6 +368,7 @@ fog_depth_end = 13.2
 fog_depth_curve = 1.46408
 
 [node name="LootboxScene" type="Node"]
+script = ExtResource( 10 )
 
 [node name="Floor" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.34974 )
@@ -370,7 +409,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0273958, 0 )
 script = ExtResource( 3 )
 
 [node name="Package" type="MeshInstance" parent="Lootbox"]
-transform = Transform( 0.01, 0, 0, 0, -1.19209e-09, -0.01, 0, 0.01, -1.19209e-09, 0, 0.294373, 0 )
+transform = Transform( 0.01, 0, 0, 0, -1.19209e-09, -0.01, 0, 0.01, -1.19209e-09, 0, 0.2, 0 )
 mesh = SubResource( 31 )
 skeleton = NodePath("../..")
 material/0 = SubResource( 34 )
@@ -407,7 +446,6 @@ hue_variation_random = 1.0
 
 [node name="Item" type="Spatial" parent="Lootbox"]
 transform = Transform( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 )
-visible = false
 
 [node name="Hat" type="MeshInstance" parent="Lootbox/Item"]
 transform = Transform( 0.26809, 0, 0.13464, 0, 0.3, 0, -0.13464, 0, 0.26809, 0, 0, 0 )
@@ -449,5 +487,15 @@ shadow_color = Color( 0.0966, 0.14007, 0.21, 1 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0901961, 0.113725, 0.160784, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="input_event" from="Lootbox/ClickArea" to="Lootbox" method="_on_area_input"]
