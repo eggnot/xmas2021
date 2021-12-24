@@ -229,7 +229,7 @@ material/0 = ExtResource( 10 )
 material/0 = ExtResource( 10 )
 
 [node name="backpack" type="BoneAttachment" parent="Path/Krampus_dolly/KramJump/model/Armature/Skeleton" index="2"]
-transform = Transform( 0.873419, -0.0474975, -0.484647, 0.485786, 0.154316, 0.860348, 0.0339241, -0.986879, 0.157856, 1.53678, -3.21016, -76.2153 )
+transform = Transform( 0.873956, -0.0340998, -0.484807, 0.484889, 0.12874, 0.865049, 0.0329162, -0.991092, 0.129048, 1.67821, -2.86866, -76.4387 )
 bone_name = "mixamorig_Spine1"
 
 [node name="box" type="MeshInstance" parent="Path/Krampus_dolly/KramJump/model/Armature/Skeleton/backpack"]
