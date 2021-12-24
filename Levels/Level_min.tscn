@@ -6,11 +6,20 @@
 
 [node name="Level" instance=ExtResource( 2 )]
 
+[node name="Krampus_dolly" parent="Path" index="1"]
+transform = Transform( -0.891581, 0, -0.452861, 0, 1, 0, 0.452862, 0, -0.891579, -0.654912, 0, -1.22405 )
+
 [node name="backpack" parent="Path/Krampus_dolly/KramJump/model/Armature/Skeleton" index="2"]
-transform = Transform( 0.873953, -0.0341055, -0.484812, 0.484894, 0.128754, 0.865043, 0.0329188, -0.99109, 0.129063, 1.67833, -2.86934, -76.4384 )
+transform = Transform( 0.874114, -0.0460232, -0.483535, 0.484541, 0.151949, 0.86147, 0.0338253, -0.987316, 0.155121, 1.49854, -3.14547, -76.2371 )
+
+[node name="Camera" parent="Path/Krampus_dolly" index="4"]
+current = true
+
+[node name="Finish" parent="Path" index="2"]
+transform = Transform( -0.851113, 0, 0.524982, 0, 1, 0, -0.524982, 0, -0.851113, -3.32443, 0, -94.7393 )
 
 [node name="Package" parent="Path" index="3" instance=ExtResource( 1 )]
-transform = Transform( -0.918879, 0, -0.394539, 0, 1, 0, 0.39454, 0, -0.918875, -4.66914, 0, -6.67809 )
+transform = Transform( -0.918879, 0, -0.394539, 0, 1, 0, 0.394541, 0, -0.918875, -4.66914, 0, -6.67809 )
 offset = 8.0
 h_offset = 1.2
 

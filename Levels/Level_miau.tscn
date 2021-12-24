@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://PackageOnPath.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Level3.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://factory1/Conveyor.scn" type="PackedScene" id=6]
 [ext_resource path="res://racks_far.gd" type="Script" id=7]
 [ext_resource path="res://factory1/Rack_mesh.mesh" type="ArrayMesh" id=8]
+[ext_resource path="res://factory1/arm.scn" type="PackedScene" id=9]
 
 [sub_resource type="MultiMesh" id=1]
 transform_format = 1
@@ -15,13 +16,13 @@ instance_count = 32
 mesh = ExtResource( 8 )
 transform_array = PoolVector3Array( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -10, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -20, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -30, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -40, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -50, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -60, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -70, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -80, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -90, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -100, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -110, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -120, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -130, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -140, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -150, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -160, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -170, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -180, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -190, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -200, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -210, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -220, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -230, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -240, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -250, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -260, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -270, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -280, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -290, 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -300, 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -310 )
 
-[node name="Level" instance=ExtResource( 2 )]
+[node name="Level2" instance=ExtResource( 2 )]
 
 [node name="Krampus_dolly" parent="Path" index="1"]
 transform = Transform( -0.891581, 0, -0.452861, 0, 1, 0, 0.452862, 0, -0.891579, -0.654912, 0, -1.22405 )
 
 [node name="backpack" parent="Path/Krampus_dolly/KramJump/model/Armature/Skeleton" index="2"]
-transform = Transform( 0.87377, -0.0423326, -0.484493, 0.48518, 0.144585, 0.862377, 0.0335436, -0.988586, 0.146873, 1.59069, -3.10739, -76.2964 )
+transform = Transform( 0.87372, -0.0345218, -0.485202, 0.485307, 0.129563, 0.864691, 0.0330138, -0.99097, 0.129956, 1.65582, -2.79816, -76.4613 )
 
 [node name="Finish" parent="Path" index="2"]
 transform = Transform( -0.851113, 0, 0.524982, 0, 1, 0, -0.524982, 0, -0.851113, -3.32443, 0, -94.7393 )
@@ -210,7 +211,7 @@ transform = Transform( -0.999949, 0, 0.0101893, 0, 1, 0, -0.0101894, 0, -0.99994
 offset = 55.0
 
 [node name="MetalBoxObsF15" parent="Path" index="41" instance=ExtResource( 3 )]
-transform = Transform( -0.997865, 0, 0.0653206, 0, 1, 0, -0.0653206, 0, -0.997864, -14.0012, 0, -57.6418 )
+transform = Transform( -0.997865, 0, 0.0653206, 0, 1, 0, -0.0653206, 0, -0.997865, -14.0012, 0, -57.6418 )
 offset = 60.0
 
 [node name="MetalBoxObsF16" parent="Path" index="42" instance=ExtResource( 3 )]
@@ -258,7 +259,7 @@ loop = false
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -5 )
 
 [node name="rack_base2" parent="Path/racks_parallel2" index="1" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -5 )
+transform = Transform( 1, 0, 3.72529e-09, 0, 1, 0, 0, 0, 1, -5.93166, 0.0285797, -4.55986 )
 
 [node name="racks_perp" type="PathFollow" parent="Path" index="48"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.4564, 0, -30.8893 )
@@ -281,10 +282,10 @@ cubic_interp = false
 loop = false
 
 [node name="rack_base" parent="Path/racks_cross" index="0" instance=ExtResource( 4 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.10229, 0, -1.07077 )
+transform = Transform( -2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, 0.788185, 0.234469, -2.99982 )
 
 [node name="rack_base2" parent="Path/racks_cross" index="1" instance=ExtResource( 4 )]
-transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -5.78726, 0, 5.29344 )
+transform = Transform( 1.19209e-07, 0, -1, 0, 1, 0, 1, 0, 1.19209e-07, -1.23339, -1.5741, 8.98617 )
 
 [node name="conveyors_parallel" type="PathFollow" parent="Path" index="50"]
 transform = Transform( -0.968658, 0, -0.248398, 0, 1, 0, 0.248398, 0, -0.968659, -10.0716, 0, -25.3075 )
@@ -299,7 +300,17 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0 )
 [node name="Conveyor2" parent="Path/conveyors_parallel" index="1" instance=ExtResource( 6 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 0, 0 )
 
-[node name="racks_far" type="MultiMeshInstance" parent="Path" index="51"]
+[node name="conveyors_parallel2" type="PathFollow" parent="Path" index="51"]
+transform = Transform( -0.968658, 0, -0.248398, 0, 1, 0, 0.248398, 0, -0.968659, -10.0716, 0, -25.3075 )
+offset = 27.29
+rotation_mode = 4
+cubic_interp = false
+loop = false
+
+[node name="arm_base" parent="Path/conveyors_parallel2" index="0" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 2.98023e-08, -2.32831e-10, 1, -9.31323e-10, 2.98023e-08, 0, 1, -89.3776, -258.219, 88.405 )
+
+[node name="racks_far" type="MultiMeshInstance" parent="Path" index="52"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.723, -3.51265, 4.94807 )
 multimesh = SubResource( 1 )
 script = ExtResource( 7 )
