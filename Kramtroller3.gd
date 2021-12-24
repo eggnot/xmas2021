@@ -18,6 +18,7 @@ onready var turns := $KramJump/turns
 onready var model_anims := $KramJump/model_animations
 onready var backpack := $KramJump/model/Armature/Skeleton/backpack
 onready var last_box := backpack.get_node("box")
+onready var sounds := $"../../Sounds"
 
 var msec_jump_start := 0
 var msec_jump_ended := 0
@@ -129,7 +130,7 @@ func _jump():
 		velocity_up = jump_velocity
 		jp.translation.y = 0.00001
 		
-	#sounds.get_node("Jump").play()
+	sounds.get_node("Jump").play()
 
 func _clamp_track(track: int) -> int:
 	if track <= -1:
@@ -158,7 +159,7 @@ func _switch_track(track: int):
 	
 	self.track = track
 	
-	#sounds.get_node("Whoosh").play()
+	sounds.get_node("Whoosh").play()
 
 func _on_collision(area: Area):
 	#var parent = area.get_parent()
@@ -177,7 +178,7 @@ func _on_collision(area: Area):
 #		print('PickupBox')
 	
 
-		#sounds.get_node('Pickup').play()
+		sounds.get_node('Pickup').play()
 
 func _on_collision_exited(area):
 	if area.is_in_group('Platform'):
@@ -189,6 +190,7 @@ func _win():
 	$move_and_play.stop()
 	model_anims['parameters/states/current'] = 2 # 2 is for wave!
 	turns.play("cam_zoom")
+	sounds.get_node("Win").play()
 	yield(turns, "animation_finished")
 	
 	#GO TO WIN SCENE

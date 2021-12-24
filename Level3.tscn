@@ -1,13 +1,18 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://factory1/texture_floor_v1.1_512.png" type="Texture" id=1]
 [ext_resource path="res://audio/Blues_Master-bounce-6.ogg" type="AudioStream" id=2]
 [ext_resource path="res://Finish.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Kramtroller3.gd" type="Script" id=4]
+[ext_resource path="res://audio/LOSE-bounce-1.wav" type="AudioStream" id=5]
 [ext_resource path="res://krampus/krampus_all.glb" type="PackedScene" id=6]
 [ext_resource path="res://krampus/Package.mesh" type="ArrayMesh" id=7]
 [ext_resource path="res://rebuildable_path.gd" type="Script" id=8]
+[ext_resource path="res://audio/JUMP-bounce-1.wav" type="AudioStream" id=9]
 [ext_resource path="res://pallete.tres" type="Material" id=10]
+[ext_resource path="res://audio/WIN-bounce-1.wav" type="AudioStream" id=11]
+[ext_resource path="res://audio/COIN-bounce-1.wav" type="AudioStream" id=12]
+[ext_resource path="res://audio/WHOOSH-bounce-1.wav" type="AudioStream" id=13]
 
 [sub_resource type="Curve3D" id=1]
 bake_interval = 4.0
@@ -214,6 +219,9 @@ shape = SubResource( 2 )
 [node name="Armature" parent="Path/Krampus_dolly/KramJump/model" index="0"]
 transform = Transform( 0.01, 0, 0, 0, -4.37114e-10, -0.01, 0, 0.01, -4.37114e-10, 0, 0, 0 )
 
+[node name="Skeleton" parent="Path/Krampus_dolly/KramJump/model/Armature" index="0"]
+bones/2/bound_children = [ NodePath("backpack") ]
+
 [node name="Krampus" parent="Path/Krampus_dolly/KramJump/model/Armature/Skeleton" index="0"]
 material/0 = ExtResource( 10 )
 
@@ -269,6 +277,31 @@ shadow_enabled = true
 [node name="music_player" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
 volume_db = 16.0
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="Theme" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 2 )
+autoplay = true
+
+[node name="Tween" type="Tween" parent="Sounds/Theme"]
+
+[node name="Pickup" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 12 )
+
+[node name="Win" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 11 )
+
+[node name="Lose" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 5 )
+
+[node name="Jump" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 9 )
+volume_db = -6.0
+
+[node name="Whoosh" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 13 )
+volume_db = -6.0
 
 [connection signal="area_entered" from="Path/Krampus_dolly/KramJump" to="Path/Krampus_dolly" method="_on_collision"]
 [connection signal="area_exited" from="Path/Krampus_dolly/KramJump" to="Path/Krampus_dolly" method="_on_collision_exited"]
