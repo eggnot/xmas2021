@@ -190,10 +190,10 @@ func _win():
 	$move_and_play.stop()
 	model_anims['parameters/states/current'] = 2 # 2 is for wave!
 	turns.play("cam_zoom")
-	sounds.get_node("Win").play()
 	yield(turns, "animation_finished")
 	
 	#GO TO WIN SCENE
+	get_tree().change_scene("res://package_opening/lootbox.tscn")
 	
 func _lose():
 	controllable = false
@@ -206,7 +206,7 @@ func _lose():
 	
 	#death_timer.start()
 	
-	#sounds.get_node('Lose').play()
+	sounds.get_node('Lose').play()
 	
 	#var theme = sounds.get_node("Theme")
 	#var tween = sounds.get_node("Theme/Tween")
