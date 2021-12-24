@@ -200,6 +200,7 @@ func _lose():
 	$move_and_play.stop()
 	model_anims['parameters/states/current'] = 1 # 1 is dead!
 	turns.play("cam_zoom")
+	sounds.get_node('Lose').play()
 	yield(turns, "animation_finished")
 	get_tree().reload_current_scene()
 	
