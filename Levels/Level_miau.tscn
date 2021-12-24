@@ -10,7 +10,7 @@
 transform = Transform( -0.891581, 0, -0.452861, 0, 1, 0, 0.452862, 0, -0.891579, -0.654912, 0, -1.22405 )
 
 [node name="backpack" parent="Path/Krampus_dolly/KramJump/model/Armature/Skeleton" index="2"]
-transform = Transform( 0.873443, -0.048429, -0.484512, 0.485746, 0.155896, 0.860086, 0.0338804, -0.986585, 0.15969, 1.51872, -3.21639, -76.2042 )
+transform = Transform( 0.873432, -0.0466453, -0.484707, 0.485769, 0.152622, 0.860659, 0.033831, -0.987183, 0.155964, 1.54706, -3.20284, -76.225 )
 
 [node name="Finish" parent="Path" index="2"]
 transform = Transform( -0.851113, 0, 0.524982, 0, 1, 0, -0.524982, 0, -0.851113, -3.32443, 0, -94.7393 )
@@ -36,7 +36,7 @@ offset = 25.0
 h_offset = 1.2
 
 [node name="Package5" parent="Path" index="7" instance=ExtResource( 1 )]
-transform = Transform( -0.974057, 0, -0.226304, 0, 1, 0, 0.226306, 0, -0.974053, -11.9223, 0, -27.6646 )
+transform = Transform( -0.974057, 0, -0.226305, 0, 1, 0, 0.226306, 0, -0.974053, -11.9223, 0, -27.6646 )
 offset = 30.0
 h_offset = 1.2
 
@@ -61,61 +61,159 @@ offset = 48.0
 h_offset = 1.2
 
 [node name="Package10" parent="Path" index="12" instance=ExtResource( 1 )]
-transform = Transform( -0.998613, 0, -0.0526659, 0, 1, 0, 0.0526661, 0, -0.998608, -15.0071, 0, -46.5863 )
+transform = Transform( -0.998613, 0, -0.0526659, 0, 1, 0, 0.0526662, 0, -0.998608, -15.0071, 0, -46.5863 )
 offset = 49.0
 h_offset = 1.2
 
 [node name="Package11" parent="Path" index="13" instance=ExtResource( 1 )]
-transform = Transform( -0.9991, 0, -0.0424235, 0, 1, 0, 0.0424236, 0, -0.999096, -15.0705, 0, -47.5958 )
+transform = Transform( -0.9991, 0, -0.0424234, 0, 1, 0, 0.0424236, 0, -0.999096, -15.0705, 0, -47.5958 )
 offset = 50.0
 h_offset = 1.2
 
-[node name="MetalBoxObsF" parent="Path" index="14" instance=ExtResource( 3 )]
+[node name="Package12" parent="Path" index="14" instance=ExtResource( 1 )]
+transform = Transform( -0.999948, 0, 0.0101893, 0, 1, 0, -0.0101894, 0, -0.999944, -15.2629, 0, -52.6476 )
+offset = 55.0
+h_offset = 1.2
+
+[node name="Package13" parent="Path" index="15" instance=ExtResource( 1 )]
+transform = Transform( -0.997865, 0, 0.0653204, 0, 1, 0, -0.0653206, 0, -0.997861, -12.8038, 0, -57.5635 )
+offset = 60.0
+h_offset = -1.2
+
+[node name="Package14" parent="Path" index="16" instance=ExtResource( 1 )]
+transform = Transform( -0.992407, 0, 0.122995, 0, 1, 0, -0.122996, 0, -0.992404, -14.8196, 0, -62.7783 )
+offset = 65.0
+h_offset = 1.2
+
+[node name="Package15" parent="Path" index="17" instance=ExtResource( 1 )]
+transform = Transform( -0.983234, 0, 0.182346, 0, 1, 0, -0.182347, 0, -0.983231, -14.1591, 0, -67.7998 )
+offset = 70.0
+h_offset = 1.2
+
+[node name="Package16" parent="Path" index="18" instance=ExtResource( 1 )]
+transform = Transform( -0.95269, 0, 0.303945, 0, 1, 0, -0.303946, 0, -0.952686, -11.9615, 0, -77.6987 )
+offset = 80.0
+h_offset = 1.2
+
+[node name="Package17" parent="Path" index="19" instance=ExtResource( 1 )]
+transform = Transform( -0.948693, 0, 0.316198, 0, 1, 0, -0.316199, 0, -0.948689, -10.514, 0, -78.2875 )
+offset = 81.0
+
+[node name="Package18" parent="Path" index="20" instance=ExtResource( 1 )]
+transform = Transform( -0.944537, 0, 0.328404, 0, 1, 0, -0.328406, 0, -0.944533, -9.07638, 0, -78.8469 )
+offset = 82.0
+h_offset = -1.2
+
+[node name="Package19" parent="Path" index="21" instance=ExtResource( 1 )]
+transform = Transform( -0.940224, 0, 0.340556, 0, 1, 0, -0.340557, 0, -0.94022, -11.0339, 0, -80.6032 )
+offset = 83.0
+h_offset = 1.2
+
+[node name="Package20" parent="Path" index="22" instance=ExtResource( 1 )]
+transform = Transform( -0.935756, 0, 0.352648, 0, 1, 0, -0.35265, 0, -0.935752, -9.60139, 0, -81.1481 )
+offset = 84.0
+
+[node name="Package21" parent="Path" index="23" instance=ExtResource( 1 )]
+transform = Transform( -0.931128, 0, 0.364691, 0, 1, 0, -0.364693, 0, -0.931124, -8.13113, 0, -81.6469 )
+offset = 85.0
+h_offset = -1.2
+
+[node name="Package22" parent="Path" index="24" instance=ExtResource( 1 )]
+transform = Transform( -0.926337, 0, 0.376695, 0, 1, 0, -0.376697, 0, -0.926333, -10.0072, 0, -83.473 )
+offset = 86.0
+h_offset = 1.2
+
+[node name="Package23" parent="Path" index="25" instance=ExtResource( 1 )]
+transform = Transform( -0.921383, 0, 0.388655, 0, 1, 0, -0.388657, 0, -0.921379, -8.54266, 0, -83.9574 )
+offset = 87.0
+
+[node name="Package24" parent="Path" index="26" instance=ExtResource( 1 )]
+transform = Transform( -0.916269, 0, 0.400563, 0, 1, 0, -0.400565, 0, -0.916265, -7.09023, 0, -84.4132 )
+offset = 88.0
+h_offset = -1.2
+
+[node name="MetalBoxObsF" parent="Path" index="27" instance=ExtResource( 3 )]
 transform = Transform( -0.942228, 0, -0.334973, 0, 1, 0, 0.334973, 0, -0.942227, -7.73749, 0, -14.1592 )
 offset = 16.0
 h_offset = 1.2
 
-[node name="MetalBoxObsF3" parent="Path" index="15" instance=ExtResource( 3 )]
+[node name="MetalBoxObsF3" parent="Path" index="28" instance=ExtResource( 3 )]
 transform = Transform( -0.942228, 0, -0.334973, 0, 1, 0, 0.334973, 0, -0.942227, -7.73749, 0, -14.1592 )
 offset = 16.0
 h_offset = 1.2
 
-[node name="MetalBoxObsF2" parent="Path" index="16" instance=ExtResource( 3 )]
+[node name="MetalBoxObsF2" parent="Path" index="29" instance=ExtResource( 3 )]
 transform = Transform( -0.963818, 0, -0.266564, 0, 1, 0, 0.266565, 0, -0.963817, -9.44199, 0, -23.1018 )
 offset = 25.0
 
-[node name="MetalBoxObsF4" parent="Path" index="17" instance=ExtResource( 3 )]
+[node name="MetalBoxObsF4" parent="Path" index="30" instance=ExtResource( 3 )]
 transform = Transform( -0.963818, 0, -0.266564, 0, 1, 0, 0.266565, 0, -0.963817, -8.28541, 0, -23.4216 )
 offset = 25.0
 h_offset = -1.2
 
-[node name="MetalBoxObsF5" parent="Path" index="18" instance=ExtResource( 3 )]
+[node name="MetalBoxObsF5" parent="Path" index="31" instance=ExtResource( 3 )]
 transform = Transform( -0.97775, 0, -0.209778, 0, 1, 0, 0.209778, 0, -0.977749, -12.4134, 0, -29.6292 )
 offset = 32.0
 h_offset = 1.2
 
-[node name="MetalBoxObsF6" parent="Path" index="19" instance=ExtResource( 3 )]
+[node name="MetalBoxObsF6" parent="Path" index="32" instance=ExtResource( 3 )]
 transform = Transform( -0.97775, 0, -0.209778, 0, 1, 0, 0.209778, 0, -0.977749, -11.2401, 0, -29.8809 )
 offset = 32.0
 
-[node name="MetalBoxObsF7" parent="Path" index="20" instance=ExtResource( 3 )]
-transform = Transform( -0.990209, 0, -0.139599, 0, 1, 0, 0.1396, 0, -0.990208, -11.5927, 0, -37.8961 )
+[node name="MetalBoxObsF7" parent="Path" index="33" instance=ExtResource( 3 )]
+transform = Transform( -0.990209, 0, -0.1396, 0, 1, 0, 0.1396, 0, -0.990208, -11.5927, 0, -37.8961 )
 offset = 40.0
 h_offset = -1.2
 
-[node name="MetalBoxObsF8" parent="Path" index="21" instance=ExtResource( 3 )]
+[node name="MetalBoxObsF8" parent="Path" index="34" instance=ExtResource( 3 )]
 transform = Transform( -0.995731, 0, -0.092311, 0, 1, 0, 0.0923111, 0, -0.99573, -12.2455, 0, -42.7866 )
 offset = 45.0
 h_offset = -1.2
 
-[node name="MetalBoxObsF9" parent="Path" index="22" instance=ExtResource( 3 )]
-transform = Transform( -0.996591, 0, -0.0825049, 0, 1, 0, 0.082505, 0, -0.99659, -12.3463, 0, -43.767 )
+[node name="MetalBoxObsF9" parent="Path" index="35" instance=ExtResource( 3 )]
+transform = Transform( -0.996591, 0, -0.0825048, 0, 1, 0, 0.0825049, 0, -0.99659, -12.3463, 0, -43.767 )
 offset = 46.0
 h_offset = -1.2
 
-[node name="MetalBoxObsF10" parent="Path" index="23" instance=ExtResource( 3 )]
+[node name="MetalBoxObsF10" parent="Path" index="36" instance=ExtResource( 3 )]
 transform = Transform( -0.997355, 0, -0.0726994, 0, 1, 0, 0.0726995, 0, -0.997354, -12.4472, 0, -44.7474 )
 offset = 47.0
 h_offset = -1.2
+
+[node name="MetalBoxObsF11" parent="Path" index="37" instance=ExtResource( 3 )]
+transform = Transform( -0.995731, 0, -0.092311, 0, 1, 0, 0.0923111, 0, -0.99573, -14.6352, 0, -42.5651 )
+offset = 45.0
+h_offset = 1.2
+
+[node name="MetalBoxObsF12" parent="Path" index="38" instance=ExtResource( 3 )]
+transform = Transform( -0.999761, 0, -0.0219171, 0, 1, 0, 0.0219171, 0, -0.99976, -15.197, 0, -49.6147 )
+offset = 52.0
+h_offset = 1.2
+
+[node name="MetalBoxObsF13" parent="Path" index="39" instance=ExtResource( 3 )]
+transform = Transform( -0.999761, 0, -0.0219171, 0, 1, 0, 0.0219171, 0, -0.99976, -13.9973, 0, -49.641 )
+offset = 52.0
+
+[node name="MetalBoxObsF14" parent="Path" index="40" instance=ExtResource( 3 )]
+transform = Transform( -0.999949, 0, 0.0101893, 0, 1, 0, -0.0101894, 0, -0.999948, -14.0629, 0, -52.6354 )
+offset = 55.0
+
+[node name="MetalBoxObsF15" parent="Path" index="41" instance=ExtResource( 3 )]
+transform = Transform( -0.997865, 0, 0.0653206, 0, 1, 0, -0.0653207, 0, -0.997864, -14.0012, 0, -57.6418 )
+offset = 60.0
+
+[node name="MetalBoxObsF16" parent="Path" index="42" instance=ExtResource( 3 )]
+transform = Transform( -0.970046, 0, 0.242927, 0, 1, 0, -0.242927, 0, -0.970045, -12.0431, 0, -72.4944 )
+offset = 75.0
+
+[node name="MetalBoxObsF17" parent="Path" index="43" instance=ExtResource( 3 )]
+transform = Transform( -0.970046, 0, 0.242927, 0, 1, 0, -0.242927, 0, -0.970044, -10.8791, 0, -72.2029 )
+offset = 75.0
+h_offset = -1.2
+
+[node name="MetalBoxObsF18" parent="Path" index="44" instance=ExtResource( 3 )]
+transform = Transform( -0.970046, 0, 0.242927, 0, 1, 0, -0.242927, 0, -0.970044, -13.2072, 0, -72.7859 )
+offset = 75.0
+h_offset = 1.2
 
 [editable path="Path/Krampus_dolly/KramJump/model"]
