@@ -6,19 +6,24 @@ export(float) var track_offset = 1.2
 
 var velocity_up := 0.0
 var track := 0
+var controllable := true
 
 onready var tween := $"Tween"
 onready var model_anims := $"ModelAnimations"
+onready var move_anim := $"MoveAnimation"
+onready var sounds := $"../../Sounds"
+onready var death_timer := $"../../DeathTimer"
 
 func _physics_process(delta):
 	velocity_up += gravity * delta
 	
-	if Input.is_key_pressed(KEY_SPACE):
-		_jump()
-	if Input.is_action_just_pressed('ui_left'):
-		_switch_track(_clamp_track(track + 1))
-	if Input.is_action_just_pressed('ui_right'):
-		_switch_track(_clamp_track(track - 1))
+	if controllable:
+		if Input.is_key_pressed(KEY_SPACE):
+			_jump()
+		if Input.is_action_just_pressed('ui_left'):
+			_switch_track(_clamp_track(track + 1))
+		if Input.is_action_just_pressed('ui_right'):
+			_switch_track(_clamp_track(track - 1))
 	
 	if v_offset >= 0.0:
 		v_offset += velocity_up * delta
@@ -33,6 +38,8 @@ func _jump():
 	model_anims.set('parameters/jump/active', true)
 	
 	velocity_up = jump_velocity
+	
+	sounds.get_node("Jump").play()
 
 func _clamp_track(track: int) -> int:
 	if track <= -1:
@@ -55,12 +62,31 @@ func _switch_track(track: int):
 	tween.start()
 	
 	self.track = track
+	
+	sounds.get_node("Whoosh").play()
 
 func _on_collision(area: Area):
 	if area.is_in_group('Obstacles'):
 		# TODO
-		get_tree().reload_current_scene()
+		_lose()
 		return
 	if area.is_in_group('PickupBoxes'):
 		area.get_parent().get_parent().queue_free()
 		print('Box picked up')
+		sounds.get_node('Pickup').play()
+
+func _lose():
+	controllable = false
+	model_anims.set('parameters/die/active', true)
+	move_anim.stop()
+	death_timer.start()
+	
+	sounds.get_node('Lose').play()
+	
+	var theme = sounds.get_node("Theme")
+	var tween = sounds.get_node("Theme/Tween")
+	tween.interpolate_property(theme, "volume_db", theme.volume_db, -24, 2.0)
+	tween.start()
+
+func _on_DeathTimer_timeout():
+	get_tree().reload_current_scene()
