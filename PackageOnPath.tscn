@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://PickupBox.tscn" type="PackedScene" id=1]
+
+[node name="Package" type="PathFollow"]
+transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0 )
+rotation_mode = 4
+cubic_interp = false
+loop = false
+
+[node name="PickupBox" parent="." groups=["PickupBoxes"] instance=ExtResource( 1 )]

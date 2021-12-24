@@ -22,7 +22,7 @@ tracks/0/keys = {
 "values": [ 0.0, 360.0 ]
 }
 
-[node name="PickupBox" type="Area" groups=["PickupBoxes"]]
+[node name="PickupBox" type="Area"]
 collision_mask = 0
 monitoring = false
 __meta__ = {

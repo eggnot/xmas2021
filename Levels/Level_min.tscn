@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://PackageOnPath.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Level3.tscn" type="PackedScene" id=2]
+[ext_resource path="res://MetalBoxObsF.tscn" type="PackedScene" id=3]
+
+[node name="Level" instance=ExtResource( 2 )]
+
+[node name="Krampus_dolly" parent="Path" index="1"]
+transform = Transform( -0.891581, 0, -0.452861, 0, 1, 0, 0.452862, 0, -0.891579, -0.654912, 0, -1.22405 )
+
+[node name="backpack" parent="Path/Krampus_dolly/KramJump/model/Armature/Skeleton" index="2"]
+transform = Transform( 0.873785, -0.0493256, -0.483805, 0.485172, 0.156499, 0.8603, 0.0332802, -0.986446, 0.160678, 1.48045, -3.18996, -76.1879 )
+
+[node name="Finish" parent="Path" index="2"]
+transform = Transform( -0.851113, 0, 0.524982, 0, 1, 0, -0.524982, 0, -0.851113, -3.32443, 0, -94.7393 )
+
+[node name="Package" parent="Path" index="3" instance=ExtResource( 1 )]
+transform = Transform( -0.918879, 0, -0.39454, 0, 1, 0, 0.394541, 0, -0.918878, -4.66914, 0, -6.67809 )
+offset = 8.0
+h_offset = 1.2
+
+[node name="MetalBoxObsF" parent="Path" index="4" instance=ExtResource( 3 )]
+transform = Transform( -0.922043, 0, -0.387088, 0, 1, 0, 0.387088, 0, -0.922042, -2.8551, 0, -8.53614 )
+offset = 9.0
+h_offset = -1.2
+
+[editable path="Path/Krampus_dolly/KramJump/model"]

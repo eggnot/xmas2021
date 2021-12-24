@@ -3,7 +3,7 @@
 [ext_resource path="res://krampus/Package.mesh" type="ArrayMesh" id=1]
 
 [sub_resource type="SphereShape" id=1]
-radius = 0.25474
+radius = 2.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "alive"
@@ -22,22 +22,30 @@ tracks/0/keys = {
 "values": [ 0.0, 360.0 ]
 }
 
-[node name="PickupBox" type="Area" groups=["PickupBoxes"]]
+[node name="Finish" type="PathFollow"]
+transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0 )
+rotation_mode = 4
+cubic_interp = false
+loop = false
+
+[node name="PickupBox" type="Area" parent="." groups=["Finish"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0 )
+collision_layer = 2
 collision_mask = 0
 monitoring = false
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 0.971483, 0, 0.237109, 0, 1, 0, -0.237109, 0, 0.971483, 0, 0, 0 )
+[node name="MeshInstance" type="MeshInstance" parent="PickupBox"]
+transform = Transform( 8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0 )
 mesh = ExtResource( 1 )
 material/0 = null
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0 )
+[node name="CollisionShape" type="CollisionShape" parent="PickupBox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.125, 0 )
 shape = SubResource( 1 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PickupBox"]
 autoplay = "alive"
 anims/alive = SubResource( 2 )

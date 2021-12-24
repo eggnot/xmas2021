@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://proto/track1.png" type="Texture" id=1]
 [ext_resource path="res://gameplay/krampus.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://audio/Blues_Master-bounce-6.ogg" type="AudioStream" id=9]
 [ext_resource path="res://audio/JUMP-bounce-1.wav" type="AudioStream" id=10]
 [ext_resource path="res://audio/WHOOSH-bounce-1.wav" type="AudioStream" id=11]
+[ext_resource path="res://ModelAnimations.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Curve3D" id=1]
 _data = {
@@ -2050,51 +2051,6 @@ tracks/1/keys = {
 "values": [ 0.0, 0.5, 1.0 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=40]
-animation = "die"
-
-[sub_resource type="AnimationNodeOneShot" id=41]
-
-[sub_resource type="AnimationNodeOneShot" id=23]
-fadein_time = 0.2
-fadeout_time = 0.2
-
-[sub_resource type="AnimationNodeAnimation" id=15]
-animation = "jump"
-
-[sub_resource type="AnimationNodeAnimation" id=36]
-animation = "idle-loop"
-
-[sub_resource type="AnimationNodeAnimation" id=37]
-animation = "walk-loop"
-
-[sub_resource type="AnimationNodeAnimation" id=38]
-animation = "run-loop"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id=22]
-blend_point_0/node = SubResource( 36 )
-blend_point_0/pos = 0.0
-blend_point_1/node = SubResource( 37 )
-blend_point_1/pos = 0.5
-blend_point_2/node = SubResource( 38 )
-blend_point_2/pos = 1.0
-min_space = 0.0
-
-[sub_resource type="AnimationNodeBlendTree" id=39]
-graph_offset = Vector2( -174.179, 41 )
-nodes/Animation/node = SubResource( 40 )
-nodes/Animation/position = Vector2( 224, 368 )
-nodes/die/node = SubResource( 41 )
-nodes/die/position = Vector2( 224, 128 )
-nodes/jump/node = SubResource( 23 )
-nodes/jump/position = Vector2( 16, 128 )
-nodes/jump_ani/node = SubResource( 15 )
-nodes/jump_ani/position = Vector2( 0, 368 )
-nodes/movement/node = SubResource( 22 )
-nodes/movement/position = Vector2( -192, 128 )
-nodes/output/position = Vector2( 432, 128 )
-node_connections = [ "output", 0, "die", "die", 0, "jump", "die", 1, "Animation", "jump", 0, "movement", "jump", 1, "jump_ani" ]
-
 [node name="LevelBase" type="Spatial"]
 
 [node name="TrackPath" type="Path" parent="."]
@@ -2117,7 +2073,8 @@ path_joined = false
 material = SubResource( 2 )
 
 [node name="Krampus" type="PathFollow" parent="TrackPath"]
-transform = Transform( 0.0573405, -0.0100571, 0.998236, 5.82077e-11, 0.999949, 0.010073, -0.998355, -0.000577629, 0.0573337, -0.381168, -1.04799, -0.551163 )
+transform = Transform( 0.131138, -0.00380923, 0.991289, 8.95964e-05, 0.999992, 0.0038303, -0.991364, -0.000413508, 0.131128, 0.609516, -1.04412, -0.432202 )
+offset = 1.0
 rotation_mode = 4
 loop = false
 script = ExtResource( 2 )
@@ -2149,7 +2106,7 @@ material/0 = ExtResource( 3 )
 material/0 = ExtResource( 3 )
 
 [node name="backpack" type="BoneAttachment" parent="TrackPath/Krampus/Model/Armature/Skeleton" index="2"]
-transform = Transform( 0.979284, 0.0994206, 0.176403, -0.201376, 0.386906, 0.899862, 0.0212136, -0.916744, 0.398912, -1.15333, 1.39728, -73.8235 )
+transform = Transform( 0.873907, -0.0497036, -0.483545, 0.484933, 0.1578, 0.860197, 0.0335484, -0.986219, 0.162005, 1.47049, -3.19556, -76.1836 )
 bone_name = "mixamorig_Spine1"
 
 [node name="box" type="MeshInstance" parent="TrackPath/Krampus/Model/Armature/Skeleton/backpack"]
@@ -2178,13 +2135,8 @@ fov = 90.0
 autoplay = "run1"
 anims/run1 = SubResource( 26 )
 
-[node name="ModelAnimations" type="AnimationTree" parent="TrackPath/Krampus"]
-tree_root = SubResource( 39 )
+[node name="ModelAnimations" parent="TrackPath/Krampus" instance=ExtResource( 12 )]
 anim_player = NodePath("../Model/AnimationPlayer")
-active = true
-parameters/die/active = false
-parameters/jump/active = false
-parameters/movement/blend_position = 1.0
 
 [node name="Tween" type="Tween" parent="TrackPath/Krampus"]
 

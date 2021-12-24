@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=2]
+
+[sub_resource type="AnimationNodeAnimation" id=40]
+animation = "die"
+
+[sub_resource type="AnimationNodeOneShot" id=41]
+
+[sub_resource type="AnimationNodeOneShot" id=23]
+fadein_time = 0.2
+fadeout_time = 0.2
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "jump"
+
+[sub_resource type="AnimationNodeAnimation" id=36]
+animation = "idle-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=37]
+animation = "walk-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=38]
+animation = "run-loop"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=22]
+blend_point_0/node = SubResource( 36 )
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource( 37 )
+blend_point_1/pos = 0.5
+blend_point_2/node = SubResource( 38 )
+blend_point_2/pos = 1.0
+min_space = 0.0
+
+[sub_resource type="AnimationNodeBlendTree" id=39]
+graph_offset = Vector2( -174.179, 41 )
+nodes/Animation/node = SubResource( 40 )
+nodes/Animation/position = Vector2( 224, 368 )
+nodes/die/node = SubResource( 41 )
+nodes/die/position = Vector2( 224, 128 )
+nodes/jump/node = SubResource( 23 )
+nodes/jump/position = Vector2( 16, 128 )
+nodes/jump_ani/node = SubResource( 15 )
+nodes/jump_ani/position = Vector2( 0, 368 )
+nodes/movement/node = SubResource( 22 )
+nodes/movement/position = Vector2( -192, 128 )
+nodes/output/position = Vector2( 432, 128 )
+node_connections = [ "output", 0, "die", "die", 0, "jump", "die", 1, "Animation", "jump", 0, "movement", "jump", 1, "jump_ani" ]
+
+[node name="ModelAnimations" type="AnimationTree"]
+tree_root = SubResource( 39 )
+parameters/die/active = false
+parameters/jump/active = false
+parameters/movement/blend_position = 0.0
